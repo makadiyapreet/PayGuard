@@ -3,9 +3,9 @@
 | Operation | Gas Used | Estimated Cost @ 2.5 Gwei (ETH) |
 |---|---|---|
 | `deposit (2 ETH)` | 495,504 | 0.001239 ETH |
-| `execute (normal)` | 201,850 | 0.000505 ETH |
-| `execute (large -> Verified)` | 142,565 | 0.000356 ETH |
-| `finalizeLarge` | 80,390 | 0.000201 ETH |
+| `execute (normal)` | 201,862 | 0.000505 ETH |
+| `execute (large -> Verified)` | 142,577 | 0.000356 ETH |
+| `finalizeLarge` | 80,402 | 0.000201 ETH |
 | `redeem (1 pgETH)` | 125,938 | 0.000315 ETH |
 | `raiseAlert` | 188,728 | 0.000472 ETH |
 | `submitProposal` | 214,944 | 0.000537 ETH |
