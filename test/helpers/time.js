@@ -1,10 +1,17 @@
+function getWeb3() {
+  if (typeof web3 !== "undefined") return web3;
+  if (typeof global.web3 !== "undefined") return global.web3;
+  throw new Error("web3 is not defined");
+}
+
 /**
  * Advances block time by the specified number of seconds and mines a new block.
  * @param {number} seconds Time to advance in seconds.
  */
 function increaseTime(seconds) {
+  const w3 = getWeb3();
   return new Promise((resolve, reject) => {
-    web3.currentProvider.send(
+    w3.currentProvider.send(
       {
         jsonrpc: "2.0",
         method: "evm_increaseTime",
@@ -13,7 +20,7 @@ function increaseTime(seconds) {
       },
       (err1) => {
         if (err1) return reject(err1);
-        web3.currentProvider.send(
+        w3.currentProvider.send(
           {
             jsonrpc: "2.0",
             method: "evm_mine",
@@ -34,7 +41,8 @@ function increaseTime(seconds) {
  * Returns the timestamp of the latest block mined.
  */
 async function latestTime() {
-  const block = await web3.eth.getBlock("latest");
+  const w3 = getWeb3();
+  const block = await w3.eth.getBlock("latest");
   return Number(block.timestamp);
 }
 
