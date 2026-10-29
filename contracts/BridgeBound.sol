@@ -21,7 +21,7 @@ abstract contract BridgeBound is Governed {
      * @notice Sets the bridge address once by governance.
      * @param b The address of the PaymentBridge contract.
      */
-    function setBridge(address b) external onlyGovernance {
+    function setBridge(address b) external virtual onlyGovernance {
         require(bridge == address(0), "PG:BRIDGE_SET");
         require(b != address(0), "PG:ZERO_ADDR");
         bridge = b;
