@@ -1,0 +1,46 @@
+name: PayGuard CI
+
+on:
+  push:
+    branches: [ main, "feat/**" ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          npm install -g truffle ganache
+
+      - name: Start Ganache CLI in background
+        run: |
+          ganache --port 7545 --accounts 15 --defaultBalanceEther 10000 --deterministic --chain.networkId 5777 > ganache.log 2>&1 &
+          sleep 3
+
+      - name: Compile Contracts
+        run: npm run compile
+
+      - name: Deploy Migrations
+        run: npm run migrate
+
+      - name: Run 61-Test Suite
+        run: npm test
+
+      - name: Run Live Demo Script
+        run: npm run demo
+
+      - name: Run Attack Scenarios Simulation
+        run: npm run attack

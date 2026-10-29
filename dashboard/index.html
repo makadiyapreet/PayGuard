@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PayGuard | Payment Integrity & Security Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: rgba(18, 24, 38, 0.85);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover: rgba(255, 255, 255, 0.12);
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-glow: rgba(59, 130, 246, 0.25);
+      --accent-green: #10b981;
+      --accent-yellow: #f59e0b;
+      --accent-red: #ef4444;
+      --accent-purple: #8b5cf6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 4px 15px var(--primary-glow);
+    }
+
+    .brand h1 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(to right, #60a5fa, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .connection-status {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--card-bg);
+      padding: 8px 16px;
+      border-radius: 9999px;
+      border: 1px solid var(--card-border);
+      font-size: 13px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-red);
+      transition: background 0.3s;
+    }
+
+    .dot.connected {
+      background: var(--accent-green);
+      box-shadow: 0 0 10px var(--accent-green);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 22px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--card-hover);
+    }
+
+    .card-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .badge-green { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-yellow { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge-red { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .badge-blue { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+      font-feature-settings: "tnum";
+    }
+
+    .stat-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 9999px;
+      overflow: hidden;
+      margin: 12px 0 6px 0;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(to right, #10b981, #3b82f6);
+      border-radius: 9999px;
+      transition: width 0.5s ease;
+    }
+
+    .info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 8px;
+      font-size: 13px;
+    }
+
+    .info-label {
+      color: var(--text-muted);
+    }
+
+    .info-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: left;
+    }
+
+    th {
+      color: var(--text-muted);
+      font-weight: 600;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--card-border);
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+    }
+
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-danger {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+    }
+
+    .input-box {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: white;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      outline: none;
+      width: 100%;
+    }
+
+    .input-box:focus {
+      border-color: var(--primary);
+    }
+
+    .form-group {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px solid var(--card-border);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="brand-logo">🛡️</div>
+        <div>
+          <h1>PayGuard Monitoring System</h1>
+          <p>Layered Payment-Integrity Bridge & Threat Detection System</p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <button class="btn btn-secondary" onclick="loadAllData()">↻ Refresh</button>
+        <div class="connection-status">
+          <span class="dot" id="net-dot"></span>
+          <span id="net-status">Connecting to Ganache (7545)...</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Top Stats Row -->
+    <div class="grid">
+      <!-- Risk Score Card -->
+      <div class="card">
+        <div class="card-title">
+          <span>CertiK Skynet Risk Score</span>
+          <span class="badge badge-green" id="risk-band-badge">LOW</span>
+        </div>
+        <div class="stat-number" id="risk-score-val">-- / 100</div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="risk-progress" style="width: 100%;"></div>
+        </div>
+        <div class="stat-meta">
+          <span>Dynamic Throttle:</span>
+          <span id="limit-multiplier" style="font-weight: 700; color: #60a5fa;">100% of Max</span>
+        </div>
+      </div>
+
+      <!-- Invariant Solvency Card -->
+      <div class="card">
+        <div class="card-title">
+          <span>Invariant Solvency</span>
+          <span class="badge badge-green" id="invariant-badge">HEALTHY</span>
+        </div>
+        <div class="stat-number" id="bridge-balance-val">-- ETH</div>
+        <div class="stat-meta">
+          <span>Wrapped pgETH Supply:</span>
+          <span id="token-supply-val" style="font-family: 'JetBrains Mono', monospace;">-- pgETH</span>
+        </div>
+        <div class="progress-bar-bg" style="margin-top: 14px;">
+          <div class="progress-bar-fill" style="width: 100%; background: #10b981;"></div>
+        </div>
+        <div class="stat-meta">
+          <span style="font-size: 11px;">Condition: Bridge ETH &ge; Token Supply</span>
+          <span style="font-size: 11px; color: #34d399;" id="solvency-delta">&ge; 0 ETH surplus</span>
+        </div>
+      </div>
+
+      <!-- Security Flags Card -->
+      <div class="card">
+        <div class="card-title">
+          <span>Consensus & Security States</span>
+          <span class="badge badge-blue">ACTIVE</span>
+        </div>
+        <ul class="info-list">
+          <li class="info-item">
+            <span class="info-label">Bridge Paused (OZ Defender)</span>
+            <span class="info-value" id="flag-paused" style="color: #34d399;">NO</span>
+          </li>
+          <li class="info-item">
+            <span class="info-label">Bridge Cursed (Chainlink RMN)</span>
+            <span class="info-value" id="flag-cursed" style="color: #34d399;">NO</span>
+          </li>
+          <li class="info-item">
+            <span class="info-label">Guardian Quorum (Wormhole)</span>
+            <span class="info-value">3 / 5 Signers</span>
+          </li>
+          <li class="info-item">
+            <span class="info-label">RMN Verifier Quorum</span>
+            <span class="info-value">2 / 2 Nodes</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Second Row -->
+    <div class="grid">
+      <!-- Invariant Limits -->
+      <div class="card">
+        <div class="card-title">
+          <span>InvariantGuard Policy Limits</span>
+          <span class="badge badge-blue">ENFORCED</span>
+        </div>
+        <ul class="info-list">
+          <li class="info-item">
+            <span class="info-label">Effective Per-Tx Limit</span>
+            <span class="info-value" id="limit-per-tx" style="color: #60a5fa;">-- ETH</span>
+          </li>
+          <li class="info-item">
+            <span class="info-label">User Daily Limit</span>
+            <span class="info-value" id="limit-user-daily">20.0 ETH</span>
+          </li>
+          <li class="info-item">
+            <span class="info-label">Global Daily Limit</span>
+            <span class="info-value" id="limit-global-daily">50.0 ETH</span>
+          </li>
+          <li class="info-item">
+            <span class="info-label">Large Transfer Delay Threshold</span>
+            <span class="info-value">&ge; 5.0 ETH (3600s delay)</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Forta Detection Network -->
+      <div class="card">
+        <div class="card-title">
+          <span>Forta Detection Network</span>
+          <span class="badge badge-purple">DECENTRALIZED BOTS</span>
+        </div>
+        <ul class="info-list">
+          <li class="info-item">
+            <span class="info-label">Reward Pool Balance</span>
+            <span class="info-value" id="bot-reward-pool" style="color: #34d399;">-- ETH</span>
+          </li>
+          <li class="info-item">
+            <span class="info-label">Active Staked Bots</span>
+            <span class="info-value">2 Bots (1.0 ETH stake each)</span>
+          </li>
+          <li class="info-item">
+            <span class="info-label">Valid Alert Reward</span>
+            <span class="info-value">10.0% of Pool</span>
+          </li>
+          <li class="info-item">
+            <span class="info-label">False Alert Slashing</span>
+            <span class="info-value" style="color: #f87171;">50.0% of Bot Stake</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Defender Monitor Rules -->
+      <div class="card">
+        <div class="card-title">
+          <span>Defender Rules & Governance</span>
+          <span class="badge badge-yellow">TIMELOCK: 60s</span>
+        </div>
+        <ul class="info-list">
+          <li class="info-item">
+            <span class="info-label">Rule 1: Velocity</span>
+            <span class="info-value">5 txs / 600s window</span>
+          </li>
+          <li class="info-item">
+            <span class="info-label">Rule 2: Volume Spikes</span>
+            <span class="info-value">15 ETH / 300s window</span>
+          </li>
+          <li class="info-item">
+            <span class="info-label">Rule 3: Repeated Senders</span>
+            <span class="info-value">3 txs / 60s window</span>
+          </li>
+          <li class="info-item">
+            <span class="info-label">Governance Multi-Sig</span>
+            <span class="info-value">2 of 3 Owners</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Contract Addresses Table -->
+    <div class="grid">
+      <div class="card full-width">
+        <div class="card-title">
+          <span>Deployed Architecture Contracts (Local Ganache 5777)</span>
+          <button class="btn btn-secondary" onclick="copyAllAddresses()" style="padding: 4px 10px; font-size: 11px;">Copy Addresses</button>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Contract Component</th>
+                <th>Role / Security Solution</th>
+                <th>Contract Address</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="contracts-table-body">
+              <tr><td colspan="4" style="text-align: center; color: var(--text-muted);">Loading contract registry...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Transfer Inspector -->
+    <div class="grid">
+      <div class="card full-width">
+        <div class="card-title">
+          <span>Transfer State Inspector</span>
+          <span class="badge badge-blue">ON-CHAIN VERIFIER</span>
+        </div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">
+          Inspect the live state of any cross-chain transfer by its 32-byte transfer hash ID.
+        </p>
+        <div class="form-group">
+          <input type="text" id="inspect-transfer-id" class="input-box" placeholder="0x... (32-byte Transfer ID)">
+          <button class="btn" onclick="inspectTransfer()">Query Transfer</button>
+        </div>
+        <div id="transfer-result" style="margin-top: 14px; display: none;">
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Sender</th>
+                  <th>Recipient</th>
+                  <th>Net Amount</th>
+                  <th>Fee</th>
+                  <th>Status</th>
+                  <th>Large Delay</th>
+                </tr>
+              </thead>
+              <tbody id="transfer-details-row"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>PayGuard: Layered Payment-Integrity Bridge System &bull; University BCT Final Lab Exam</p>
+      <p style="margin-top: 4px; font-size: 11px;">Components: InvariantGuard &bull; GuardianRegistry &bull; RiskManagement &bull; DefenderMonitor &bull; DetectionNetwork &bull; RiskScore &bull; PaymentBridge</p>
+    </footer>
+  </div>
+
+  <script>
+    let web3;
+    let deployed = {};
+
+    // Standard Minimal ABIs
+    const ABIS = {
+      RiskScore: [
+        {"inputs":[],"name":"getScore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},
+        {"inputs":[],"name":"getBand","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"}
+      ],
+      PaymentBridge: [
+        {"inputs":[],"name":"paused","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},
+        {"inputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"name":"transfers","outputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"netAmount","type":"uint256"},{"internalType":"uint256","name":"fee","type":"uint256"},{"internalType":"uint256","name":"nonce","type":"uint256"},{"internalType":"uint256","name":"createdAt","type":"uint256"},{"internalType":"uint256","name":"expiresAt","type":"uint256"},{"internalType":"uint256","name":"executableAt","type":"uint256"},{"internalType":"bool","name":"isLarge","type":"bool"},{"internalType":"uint8","name":"state","type":"uint8"}],"stateMutability":"view","type":"function"}
+      ],
+      RiskManagement: [
+        {"inputs":[],"name":"isCursed","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"}
+      ],
+      WrappedToken: [
+        {"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}
+      ],
+      InvariantGuard: [
+        {"inputs":[],"name":"perTxLimit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}
+      ],
+      DetectionNetwork: [
+        {"inputs":[],"name":"rewardPool","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}
+      ]
+    };
+
+    const ROLES = {
+      PaymentBridge: "Core Lock-and-Mint Bridge Hub",
+      WrappedToken: "Wrapped Token (pgETH) Contract",
+      InvariantGuard: "Formal Solvency & Dynamic Limits",
+      GuardianRegistry: "Wormhole t-of-n Multi-Sig Approvals",
+      RiskManagement: "Chainlink CCIP 2nd Verifier / Curse",
+      DefenderMonitor: "OZ Defender Rules & 2-of-3 Timelock",
+      DetectionNetwork: "Forta Bot Alerting & Slashing Network",
+      RiskScore: "CertiK Skynet Public Dynamic Risk Score"
+    };
+
+    const TRANSFER_STATES = ["None", "Pending", "Verified (In Delay)", "Executed", "Challenged", "Refunded"];
+    const RISK_BANDS = ["LOW", "MEDIUM", "HIGH", "CRITICAL"];
+    const MULTIPLIERS = ["100%", "50%", "10%", "0%"];
+
+    async function init() {
+      try {
+        web3 = new Web3("http://127.0.0.1:7545");
+        const isListening = await web3.eth.net.isListening();
+        if (isListening) {
+          document.getElementById("net-dot").className = "dot connected";
+          document.getElementById("net-status").innerText = "Ganache Connected (127.0.0.1:7545)";
+        }
+      } catch (err) {
+        document.getElementById("net-dot").className = "dot";
+        document.getElementById("net-status").innerText = "Ganache Offline";
+        console.error("Connection failed:", err);
+        return;
+      }
+
+      await loadDeployedAddresses();
+      await loadAllData();
+    }
+
+    async function loadDeployedAddresses() {
+      try {
+        const res = await fetch("../deployed.json");
+        if (res.ok) {
+          deployed = await res.json();
+        }
+      } catch (e) {
+        console.warn("Could not fetch deployed.json directly; falling back to hardcoded defaults:", e);
+      }
+
+      // Render Table
+      const tbody = document.getElementById("contracts-table-body");
+      tbody.innerHTML = "";
+      for (const [name, addr] of Object.entries(deployed)) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td style="font-weight: 600; color: #f1f5f9;">${name}</td>
+          <td style="color: #94a3b8;">${ROLES[name] || "Security Component"}</td>
+          <td><a href="#" style="color: #60a5fa; text-decoration: none;">${addr}</a></td>
+          <td><span class="badge badge-green">LIVE</span></td>
+        `;
+        tbody.appendChild(tr);
+      }
+    }
+
+    async function loadAllData() {
+      if (!web3 || !deployed.PaymentBridge) return;
+
+      try {
+        // 1. Bridge Balance & Token Supply
+        const bridgeBalWei = await web3.eth.getBalance(deployed.PaymentBridge);
+        const bridgeBalEth = web3.utils.fromWei(bridgeBalWei, "ether");
+        document.getElementById("bridge-balance-val").innerText = parseFloat(bridgeBalEth).toFixed(4) + " ETH";
+
+        const tokenContract = new web3.eth.Contract(ABIS.WrappedToken, deployed.WrappedToken);
+        const supplyWei = await tokenContract.methods.totalSupply().call();
+        const supplyEth = web3.utils.fromWei(supplyWei, "ether");
+        document.getElementById("token-supply-val").innerText = parseFloat(supplyEth).toFixed(4) + " pgETH";
+
+        const surplus = (parseFloat(bridgeBalEth) - parseFloat(supplyEth)).toFixed(4);
+        document.getElementById("solvency-delta").innerText = surplus >= 0 ? `+${surplus} ETH surplus` : `Deficit: ${surplus} ETH`;
+
+        // 2. Risk Score & Band
+        const riskContract = new web3.eth.Contract(ABIS.RiskScore, deployed.RiskScore);
+        const score = await riskContract.methods.getScore().call();
+        const band = await riskContract.methods.getBand().call();
+        
+        document.getElementById("risk-score-val").innerText = `${score} / 100`;
+        document.getElementById("risk-progress").style.width = `${score}%`;
+        
+        const bandName = RISK_BANDS[band] || "LOW";
+        const bandBadge = document.getElementById("risk-band-badge");
+        bandBadge.innerText = bandName;
+        bandBadge.className = `badge badge-${band === "0" ? "green" : band === "1" ? "yellow" : "red"}`;
+        
+        document.getElementById("limit-multiplier").innerText = `${MULTIPLIERS[band]} of Max`;
+
+        // 3. Limits
+        const invContract = new web3.eth.Contract(ABIS.InvariantGuard, deployed.InvariantGuard);
+        const baseLimitWei = await invContract.methods.perTxLimit().call();
+        const baseLimit = parseFloat(web3.utils.fromWei(baseLimitWei, "ether"));
+        const mult = band === "0" ? 1.0 : band === "1" ? 0.5 : band === "2" ? 0.1 : 0.0;
+        document.getElementById("limit-per-tx").innerText = `${(baseLimit * mult).toFixed(2)} ETH (Base: ${baseLimit} ETH)`;
+
+        // 4. Paused & Cursed Flags
+        const bridgeContract = new web3.eth.Contract(ABIS.PaymentBridge, deployed.PaymentBridge);
+        const isPaused = await bridgeContract.methods.paused().call();
+        const flagPaused = document.getElementById("flag-paused");
+        flagPaused.innerText = isPaused ? "YES (HALTED)" : "NO";
+        flagPaused.style.color = isPaused ? "#f87171" : "#34d399";
+
+        const rmnContract = new web3.eth.Contract(ABIS.RiskManagement, deployed.RiskManagement);
+        const isCursed = await rmnContract.methods.isCursed().call();
+        const flagCursed = document.getElementById("flag-cursed");
+        flagCursed.innerText = isCursed ? "YES (HALTED)" : "NO";
+        flagCursed.style.color = isCursed ? "#f87171" : "#34d399";
+
+        // 5. Detection Pool
+        const detectContract = new web3.eth.Contract(ABIS.DetectionNetwork, deployed.DetectionNetwork);
+        const poolWei = await detectContract.methods.rewardPool().call();
+        document.getElementById("bot-reward-pool").innerText = parseFloat(web3.utils.fromWei(poolWei, "ether")).toFixed(4) + " ETH";
+
+      } catch (err) {
+        console.error("Error refreshing data:", err);
+      }
+    }
+
+    async function inspectTransfer() {
+      const id = document.getElementById("inspect-transfer-id").value.trim();
+      if (!id || !web3.utils.isHexStrict(id) || id.length !== 66) {
+        alert("Please enter a valid 32-byte bytes32 hash (0x followed by 64 hex characters).");
+        return;
+      }
+
+      try {
+        const bridge = new web3.eth.Contract(ABIS.PaymentBridge, deployed.PaymentBridge);
+        const t = await bridge.methods.transfers(id).call();
+        if (t.sender === "0x0000000000000000000000000000000000000000") {
+          alert("Transfer ID not found on-chain.");
+          return;
+        }
+
+        const resDiv = document.getElementById("transfer-result");
+        const tbody = document.getElementById("transfer-details-row");
+        resDiv.style.display = "block";
+        
+        tbody.innerHTML = `
+          <tr>
+            <td>${t.sender.slice(0, 8)}...${t.sender.slice(-6)}</td>
+            <td>${t.recipient.slice(0, 8)}...${t.recipient.slice(-6)}</td>
+            <td style="color: #60a5fa; font-weight: 600;">${web3.utils.fromWei(t.netAmount, "ether")} ETH</td>
+            <td>${web3.utils.fromWei(t.fee, "ether")} ETH</td>
+            <td><span class="badge ${t.state === "3" ? "badge-green" : t.state === "4" ? "badge-red" : "badge-yellow"}">${TRANSFER_STATES[t.state]}</span></td>
+            <td>${t.isLarge ? (t.state === "1" ? "Active (1h challenge)" : "Completed") : "N/A (Standard)"}</td>
+          </tr>
+        `;
+      } catch (err) {
+        alert("Failed to inspect transfer: " + err.message);
+      }
+    }
+
+    function copyAllAddresses() {
+      navigator.clipboard.writeText(JSON.stringify(deployed, null, 2));
+      alert("Deployed addresses copied to clipboard!");
+    }
+
+    window.addEventListener("DOMContentLoaded", init);
+  </script>
+</body>
+</html>

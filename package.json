@@ -8,7 +8,7 @@
     "test": "truffle test --network ganache",
     "demo": "truffle exec scripts/demo.js --network ganache",
     "attack": "truffle exec scripts/attack.js --network ganache",
-    "slither": "slither . --truffle-ignore-compile"
+    "slither": "slither . --solc-remaps @openzeppelin/=node_modules/@openzeppelin/"
   },
   "dependencies": {
     "@openzeppelin/contracts": "5.0.2"
