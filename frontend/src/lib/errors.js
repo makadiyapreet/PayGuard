@@ -95,6 +95,54 @@ export const REVERT_DICTIONARY = {
     meaning: "PaymentBridge receive() rejects raw ether transfers without deposit metadata.",
     hint: "Use deposit(recipient) with value to initiate a valid cross-chain transfer.",
   },
+  "PG:NOT_CHALLENGER": {
+    title: "Unauthorized Challenger (Access Denied)",
+    layer: "L3",
+    meaning: "Caller is not authorized to challenge transfers. Only Wormhole Guardians (Accounts 1-5), Forta Staked Bots (Accounts 8-9), or Governance can issue security challenges.",
+    hint: "Switch 'Acting As' in the top bar to a Guardian (e.g. Account #1) or Forta Bot (Account #8), or use the quick challenger selector on the Challenge page.",
+  },
+  "PG:CANNOT_CHALLENGE": {
+    title: "Transfer Ineligible for Challenge",
+    layer: "L3",
+    meaning: "Transfers can only be challenged while in Pending state (State 1) or inside the 1-hour delayed verification window (State 2) before execution.",
+    hint: "Transfers already executed, refunded, or expired cannot be challenged.",
+  },
+  "PG:CANNOT_REFUND": {
+    title: "Refund Conditions Not Satisfied",
+    layer: "L3",
+    meaning: "Transfers can only be refunded if they were challenged (State 4), expired past their deadline, or if the bridge is currently cursed by RMN.",
+    hint: "A challenge must be recorded or the expiration deadline must elapse before funds can be refunded to the sender.",
+  },
+  "PG:DELAY_ACTIVE": {
+    title: "Challenge Delay Window Active",
+    layer: "L1",
+    meaning: "Large transfers (>= 5 ETH) enforce a mandatory 1-hour delay window before destination pgETH can be minted.",
+    hint: "Wait until the challenge window elapses, or fast-forward EVM time in Dev Tools.",
+  },
+  "PG:NOT_PENDING": {
+    title: "Transfer Not in Pending State",
+    layer: "CORE",
+    meaning: "The transfer is no longer in Pending state (it has already been approved, executed, or refunded).",
+    hint: "Only newly deposited transfers in State 1 (Pending) can be approved by Guardians.",
+  },
+  "PG:NOT_VERIFIED": {
+    title: "Transfer Not in Verified State",
+    layer: "CORE",
+    meaning: "The transfer has not passed dual-consensus verification or is not delayed.",
+    hint: "Run execute() with Guardian and RMN signatures first to verify the transfer.",
+  },
+  "PG:EXPIRED": {
+    title: "Transfer Expired",
+    layer: "CORE",
+    meaning: "The transfer validity window has elapsed. Unexecuted transfers past expiration cannot be finalized.",
+    hint: "Expired transfers can be safely refunded to the original sender using refund().",
+  },
+  "PG:NOT_MONITOR": {
+    title: "Caller Not Defender Monitor",
+    layer: "L3",
+    meaning: "This function can only be invoked by the DefenderMonitor contract.",
+    hint: "Ensure automated emergency pauses are routed through DefenderMonitor.",
+  },
 };
 
 export function decodeRevertReason(error) {
