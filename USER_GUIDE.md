@@ -163,3 +163,4 @@ In the top right navigation bar, click the **Acting As** dropdown to switch betw
   - PayGuard Lifecycle: 867,613 gas
   - Baseline Unprotected Bridge: 185,858 gas
   - **Security Overhead:** $+366.81\%$ for 6 layers of verifiable enterprise protection.
+

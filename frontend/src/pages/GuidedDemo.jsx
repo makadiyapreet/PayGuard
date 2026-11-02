@@ -59,7 +59,7 @@ export function GuidedDemo() {
     <div className="p-6 max-w-7xl mx-auto flex flex-col gap-6">
       <div>
         <h2 className="text-2xl font-extrabold text-white tracking-tight flex items-center gap-2.5">
-          <span>8-Step Guided Viva Demonstration</span>
+          <span>8-Step Guided System Demonstration</span>
           <LayerBadge layer="CORE" />
         </h2>
         <p className="text-xs text-slate-400 mt-1">

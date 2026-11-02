@@ -11,7 +11,7 @@ export function TopBar() {
     useChainStore();
   const { accounts, activeAccountIndex, setActiveAccountIndex, balances, liveRoles } =
     useAccountStore();
-  const { vivaMode, toggleVivaMode, presentationMode, togglePresentationMode, theme, toggleTheme } = useUiStore();
+  const { auditMode, toggleAuditMode, presentationMode, togglePresentationMode, theme, toggleTheme } = useUiStore();
 
   const currentAccount = accounts[activeAccountIndex];
   const activeRoles = currentAccount ? liveRoles[currentAccount.address.toLowerCase()] : null;
@@ -99,18 +99,18 @@ export function TopBar() {
           <span className="hidden md:inline capitalize">{theme}</span>
         </button>
 
-        {/* Viva Mode & Presentation toggles */}
+        {/* Audit Mode & Presentation toggles */}
         <button
-          onClick={toggleVivaMode}
+          onClick={toggleAuditMode}
           className={`p-1.5 rounded-lg border text-xs font-medium flex items-center gap-1 transition-colors ${
-            vivaMode
+            auditMode
               ? "bg-purple-600/20 border-purple-500 text-purple-300"
               : "bg-slate-900 border-slate-800 text-slate-400 hover:text-white"
           }`}
-          title="Viva Mode: highlights which IA1 research weakness each component solves"
+          title="Audit Mode: highlights which IA1 research weakness each component solves"
         >
           <HelpCircle className="w-4 h-4" />
-          <span className="hidden xl:inline">Viva Mode</span>
+          <span className="hidden xl:inline">Audit Mode</span>
         </button>
 
         <button

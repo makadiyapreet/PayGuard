@@ -72,7 +72,7 @@ const NAV_ITEMS = [
       { to: "/attack-lab", label: "Attack Lab", icon: Flame },
       { to: "/event-log", label: "Unified Event Log", icon: ListOrdered },
       { to: "/accounts-devtools", label: "Accounts & Dev Tools", icon: Wrench },
-      { to: "/guided-demo", label: "Guided Viva Demo", icon: PlayCircle },
+      { to: "/guided-demo", label: "Guided Demo Walkthrough", icon: PlayCircle },
     ],
   },
 ];

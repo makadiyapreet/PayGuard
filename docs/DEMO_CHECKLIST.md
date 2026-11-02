@@ -1,4 +1,4 @@
-# PayGuard Pre-Exam & Live Viva Demonstration Checklist
+# PayGuard Pre-Exam & Live Defense Demonstration Checklist
 
 ## 1. Environment Pre-Flight Check
 
@@ -24,7 +24,7 @@ Before calling the professor or opening the terminal for evaluation:
 
 ---
 
-## 2. Live Demo Script (Step-by-Step Viva Execution)
+## 2. Live Demo Script (Step-by-Step Defense Execution)
 
 Run the automated live demonstration script with formatted terminal output:
 ```bash
@@ -54,7 +54,7 @@ npm run attack
 
 ## 4. Contract Code Location Reference by Team Member
 
-| Member | Code File Location | Viva Demonstration Function |
+| Member | Code File Location | Defense Demonstration Function |
 |---|---|---|
 | **23BCP413** | `contracts/RiskScore.sol`<br>`contracts/DetectionNetwork.sol` | - `RiskScore.reduce()` & `recover()`<br>- `DetectionNetwork.registerBot()`, `raiseAlert()`, `resolveAlert()` |
 | **23BCP414** | `contracts/GuardianRegistry.sol`<br>`contracts/DefenderMonitor.sol` | - `GuardianRegistry.verifyApproval()` & strictly ascending signers check<br>- `DefenderMonitor.evaluate()`, `emergencyPause()`, `submitProposal()`, `executeProposal()` |

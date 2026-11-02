@@ -1,11 +1,11 @@
 import { create } from "zustand";
 
 export const useUiStore = create((set) => ({
-  vivaMode: false,
+  auditMode: false,
   presentationMode: false,
   theme: typeof window !== "undefined" ? localStorage.getItem("payguard-theme") || "dark" : "dark",
 
-  toggleVivaMode: () => set((state) => ({ vivaMode: !state.vivaMode })),
+  toggleAuditMode: () => set((state) => ({ auditMode: !state.auditMode })),
   togglePresentationMode: () => set((state) => ({ presentationMode: !state.presentationMode })),
   toggleTheme: () =>
     set((state) => {

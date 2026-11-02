@@ -266,7 +266,7 @@ export function GuardiansApproval() {
       <div className="bg-[#121826] border border-slate-800 rounded-2xl p-6 flex flex-col gap-4">
         <div className="flex justify-between items-center border-b border-slate-800 pb-3">
           <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">
-            Consensus Verification & Security Tamper Toggles (Viva Demonstrations)
+            Consensus Verification & Security Tamper Toggles (Interactive Security Audit)
           </span>
           <div className="flex items-center gap-3 text-xs font-mono">
             <span className="text-slate-400">Signatures:</span>

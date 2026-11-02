@@ -1,6 +1,6 @@
-# PayGuard Viva Preparation Guide
+# PayGuard Defense Preparation Guide
 
-This guide contains 32 core viva interview questions and answers, complete with theoretical foundations, implementation specifics, and an ownership matrix for team examination defense.
+This guide contains 32 core defense interview questions and answers, complete with theoretical foundations, implementation specifics, and an ownership matrix for team examination defense.
 
 ---
 

@@ -2,11 +2,11 @@
   "chainId": 1337,
   "networkId": 5777,
   "rpcUrl": "http://127.0.0.1:7545",
-  "deployedAt": "2026-11-02T12:18:47.413Z",
+  "deployedAt": "2026-11-02T13:01:57.252Z",
   "deployer": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1",
   "contracts": {
     "RiskScore": {
-      "address": "0xf420dD692664F0cFCDC0a4667D341A8afF4878FB",
+      "address": "0x1c92EA137313cBB98707cF3bcA55Fe1D3C4afcB7",
       "abi": [
         {
           "inputs": [
@@ -365,7 +365,7 @@
       "solution": "CertiK Skynet"
     },
     "WrappedToken": {
-      "address": "0x0457c52E1A7931E250C2004bDdEbA70f116793b5",
+      "address": "0xf47E626Ce4c7BfD2cCd327a3E56dD5cCBF1EAE8c",
       "abi": [
         {
           "inputs": [
@@ -988,7 +988,7 @@
       "solution": "—"
     },
     "GuardianRegistry": {
-      "address": "0x9FB25BCDc880115269a87bbc4AA69Ea8930987Fc",
+      "address": "0x3C1fa30697b1C35b94367C26927eb7541ccE0335",
       "abi": [
         {
           "inputs": [
@@ -1370,7 +1370,7 @@
       "solution": "Wormhole Guardian Network"
     },
     "RiskManagement": {
-      "address": "0x432547ef8dAa759969a2C98967e690D9A8033c23",
+      "address": "0xdf065C99FbBd39819e1ae628C17aa64632fA0dEd",
       "abi": [
         {
           "inputs": [
@@ -2006,7 +2006,7 @@
       "solution": "Chainlink CCIP RMN"
     },
     "DetectionNetwork": {
-      "address": "0xC078A083ccc916C5db53Bbd378e2daBf62BfdA91",
+      "address": "0xE1F070E9aCB85B2De64898b706aEAF361AB850bb",
       "abi": [
         {
           "inputs": [
@@ -2779,7 +2779,7 @@
       "solution": "Forta Network"
     },
     "InvariantGuard": {
-      "address": "0x04c45cd829c8f72f64B3617fc89F45c150485BC5",
+      "address": "0xd4Dc827d63e8033f818c635858Dc61517228cEcD",
       "abi": [
         {
           "inputs": [
@@ -3358,7 +3358,7 @@
       "solution": "Certora Prover"
     },
     "DefenderMonitor": {
-      "address": "0x9BB4E75ab86C0e7B28e7cC6Fd18a4d5D2e0ffB36",
+      "address": "0x9d911457eAB42Be32459eeF4B10d5515AF200Ab6",
       "abi": [
         {
           "inputs": [
@@ -4581,7 +4581,7 @@
       "solution": "OpenZeppelin Defender"
     },
     "PaymentBridge": {
-      "address": "0x7f791Ac091CD2d6e57c6d489b6307803614eCD1D",
+      "address": "0x09ef5957B0f45C93ccEA60e695943C8277FdcCf3",
       "abi": [
         {
           "inputs": [

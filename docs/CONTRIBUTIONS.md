@@ -54,5 +54,5 @@ This project was built collaboratively by a team of three students for the Block
 ---
 
 ## 4. Collective Verification
-All team members jointly reviewed the code, verified the complete test suite (61/61 passing), rehearsed the live demonstration (`scripts/demo.js`), and cross-audited against the viva examination questions in `docs/VIVA_PREP.md`.
+All team members jointly reviewed the code, verified the complete test suite (61/61 passing), rehearsed the live demonstration (`scripts/demo.js`), and cross-audited against the defense examination questions in `docs/DEFENSE_PREP.md`.
 

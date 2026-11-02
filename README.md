@@ -194,12 +194,12 @@ payguard/
 └── docs/
     ├── ARCHITECTURE.md                  # Component & Mermaid sequence/state diagrams
     ├── USER_GUIDE.md                    # Step-by-step interactive dashboard manual
-    ├── FACULTY_VIVA_DEMO_GUIDE.md       # Complete viva presentation & talk track
+    ├── FACULTY_DEMO_GUIDE.md            # Complete faculty presentation & talk track
     ├── DECISIONS.md                     # Architectural decisions & design choices
     ├── SECURITY_NOTES.md                # Threat model & Slither audit justifications
     ├── TEST_REPORT.md                   # Real test outputs & bytecode sizes (< 24 KB)
     ├── GAS_TABLE.md                     # On-chain gas benchmark table
-    ├── VIVA_PREP.md                     # 32 viva questions & answers with ownership matrix
+    ├── TECHNICAL_DEFENSE.md             # 32 technical questions & answers with ownership matrix
     ├── IA1_MAPPING.md                   # Research mapping table to IA1 presentation
     ├── DEMO_CHECKLIST.md                # Pre-exam rehearsal checklist & fallback steps
     └── CONTRIBUTIONS.md                 # Roll number ownership breakdown (413 / 414 / 417)

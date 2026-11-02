@@ -6,7 +6,7 @@ This document records key technical decisions, trade-offs, and justifications ma
 
 ### D1: Short Revert Strings Prefixed with `PG:`
 * **Decision:** Used string reverts prefixed with `PG:` (e.g. `"PG:BAD_SIGS"`, `"PG:PAUSED"`, `"PG:TX_LIMIT"`) rather than custom Solidity errors (`error BadSigs()`).
-* **Justification:** Custom errors introduced in Solidity 0.8.4 can have decoding and string-matching issues across specific Truffle and Ganache toolchain combinations. Short ASCII strings prefixed with `PG:` decode reliably in Truffle assertions and make live viva demonstrations crystal clear.
+* **Justification:** Custom errors introduced in Solidity 0.8.4 can have decoding and string-matching issues across specific Truffle and Ganache toolchain combinations. Short ASCII strings prefixed with `PG:` decode reliably in Truffle assertions and make live defense demonstrations crystal clear.
 
 ---
 
