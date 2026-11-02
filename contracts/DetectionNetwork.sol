@@ -259,3 +259,4 @@ contract DetectionNetwork is BridgeBound, ReentrancyGuard, IDetectionNetwork {
         emit RewardPoolFunded(msg.sender, msg.value);
     }
 }
+

@@ -374,3 +374,4 @@ contract PaymentBridge is Governed, ReentrancyGuard, IPausable {
         revert("PG:NO_DIRECT_ETH");
     }
 }
+

@@ -106,3 +106,4 @@ contract("GuardianRegistry (02_guardians.test.js)", (accounts) => {
     );
   });
 });
+

@@ -6,3 +6,4 @@ interface IGuardianRegistry {
     function markUsed(bytes32 digest) external;
     function isGuardian(address who) external view returns (bool);
 }
+

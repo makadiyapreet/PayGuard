@@ -187,3 +187,4 @@ contract RiskManagement is Governed, IRiskManagement {
         return nodes.length;
     }
 }
+

@@ -44,3 +44,4 @@ contract WrappedToken is ERC20, AccessControl {
         _burn(from, amount);
     }
 }
+

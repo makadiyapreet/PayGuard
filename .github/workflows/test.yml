@@ -44,3 +44,4 @@ jobs:
 
       - name: Run Attack Scenarios Simulation
         run: npm run attack
+

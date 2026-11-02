@@ -5,3 +5,4 @@ interface IDetectionNetwork {
     function fundRewardPool() external payable;
     function isBot(address who) external view returns (bool);
 }
+

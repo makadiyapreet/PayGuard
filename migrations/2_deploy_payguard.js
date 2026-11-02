@@ -157,3 +157,4 @@ module.exports = async function (deployer, network, accounts) {
   );
   console.log("Addresses successfully written to deployed.json\n");
 };
+

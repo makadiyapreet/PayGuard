@@ -12,3 +12,4 @@ contract ForceSend {
         selfdestruct(target);
     }
 }
+

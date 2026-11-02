@@ -25,3 +25,4 @@ async function expectRevert(promise, reason) {
 module.exports = {
   expectRevert
 };
+

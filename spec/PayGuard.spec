@@ -63,3 +63,4 @@ rule cursedBridgeCannotMint(bytes32 transferId, bytes[] sigs) {
     assert cursed => (lastReverted || supplyAfter == supplyBefore),
         "Cursed bridge must not mint tokens";
 }
+

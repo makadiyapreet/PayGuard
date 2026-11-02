@@ -180,3 +180,4 @@ contract("InvariantGuard (04_invariants.test.js)", (accounts) => {
     assert.isTrue(await guard.checkInvariant(), "Extra ETH must keep invariant true");
   });
 });
+

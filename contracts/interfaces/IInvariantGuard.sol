@@ -5,3 +5,4 @@ interface IInvariantGuard {
     function checkDeposit(address user, uint256 amount) external returns (bool);
     function checkInvariant() external view returns (bool);
 }
+

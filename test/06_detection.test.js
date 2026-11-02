@@ -159,3 +159,4 @@ contract("DetectionNetwork (06_detection.test.js)", (accounts) => {
     assert.isFalse(nonBotEligible, "Non-bot must not be eligible");
   });
 });
+

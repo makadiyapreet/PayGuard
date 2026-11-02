@@ -140,3 +140,4 @@ contract InvariantGuard is BridgeBound, IInvariantGuard {
         emit BandPercentsUpdated(percents);
     }
 }
+

@@ -101,3 +101,4 @@ async function deployFresh(accounts) {
 module.exports = {
   deployFresh
 };
+

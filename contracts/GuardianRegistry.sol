@@ -152,3 +152,4 @@ contract GuardianRegistry is BridgeBound, IGuardianRegistry {
         return guardians.length;
     }
 }
+

@@ -73,3 +73,4 @@ npm run attack
    - Re-run `npx truffle compile && npx truffle migrate --reset --network ganache`
 3. **If tests encounter an unexpected pause:**
    - A previous test may have left the bridge paused. Run `npx truffle migrate --reset --network ganache` before running tests.
+

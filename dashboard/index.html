@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PayGuard | Payment Integrity & Security Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
     :root {
       --bg: #0b0f19;
       --card-bg: rgba(18, 24, 38, 0.85);
@@ -24,15 +23,11 @@
       --accent-purple: #8b5cf6;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background-color: var(--bg);
-      background-image: 
+      background-image:
         radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
         radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
         radial-gradient(at 50% 50%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
@@ -42,9 +37,26 @@
       padding: 24px;
     }
 
-    .container {
-      max-width: 1300px;
-      margin: 0 auto;
+    .container { max-width: 1300px; margin: 0 auto; }
+
+    /* ── Error Banner ── */
+    .error-banner {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      border-radius: 12px;
+      padding: 18px 24px;
+      margin-bottom: 24px;
+      display: none;
+    }
+    .error-banner h3 { color: #f87171; margin-bottom: 8px; font-size: 15px; }
+    .error-banner p { color: #fca5a5; font-size: 13px; line-height: 1.6; }
+    .error-banner code {
+      background: rgba(0,0,0,0.4);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #fbbf24;
     }
 
     header {
@@ -58,272 +70,126 @@
       gap: 16px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .brand { display: flex; align-items: center; gap: 12px; }
 
     .brand-logo {
-      width: 44px;
-      height: 44px;
+      width: 44px; height: 44px;
       background: linear-gradient(135deg, #3b82f6, #8b5cf6);
       border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-size: 22px;
       box-shadow: 0 4px 15px var(--primary-glow);
     }
 
     .brand h1 {
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
+      font-size: 24px; font-weight: 800; letter-spacing: -0.5px;
       background: linear-gradient(to right, #60a5fa, #c084fc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
 
-    .brand p {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
+    .brand p { font-size: 13px; color: var(--text-muted); }
 
     .connection-status {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: var(--card-bg);
-      padding: 8px 16px;
-      border-radius: 9999px;
-      border: 1px solid var(--card-border);
-      font-size: 13px;
-      font-family: 'JetBrains Mono', monospace;
+      display: flex; align-items: center; gap: 12px;
+      background: var(--card-bg); padding: 8px 16px;
+      border-radius: 9999px; border: 1px solid var(--card-border);
+      font-size: 13px; font-family: 'JetBrains Mono', monospace;
     }
 
     .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent-red);
-      transition: background 0.3s;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent-red); transition: background 0.3s;
     }
-
-    .dot.connected {
-      background: var(--accent-green);
-      box-shadow: 0 0 10px var(--accent-green);
-    }
+    .dot.connected { background: var(--accent-green); box-shadow: 0 0 10px var(--accent-green); }
+    .dot.warning   { background: var(--accent-yellow); box-shadow: 0 0 10px var(--accent-yellow); }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-      gap: 20px;
-      margin-bottom: 24px;
+      gap: 20px; margin-bottom: 24px;
     }
 
     .card {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 22px;
-      transition: transform 0.2s, border-color 0.2s;
+      background: var(--card-bg); backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border); border-radius: 16px;
+      padding: 22px; transition: transform 0.2s, border-color 0.2s;
     }
-
-    .card:hover {
-      border-color: var(--card-hover);
-    }
+    .card:hover { border-color: var(--card-hover); }
 
     .card-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 14px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text-muted);
-      margin-bottom: 16px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 14px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 16px;
     }
 
     .badge {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
+      display: inline-block; padding: 4px 10px; border-radius: 6px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
     }
-
-    .badge-green { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-green  { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
     .badge-yellow { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
-    .badge-red { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
-    .badge-blue { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .badge-red    { background: rgba(239, 68, 68, 0.2);  color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3);  }
+    .badge-blue   { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .badge-purple { background: rgba(139, 92, 246, 0.2); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.3); }
 
-    .stat-number {
-      font-size: 36px;
-      font-weight: 800;
-      letter-spacing: -1px;
-      margin-bottom: 8px;
-      font-feature-settings: "tnum";
-    }
+    .stat-number { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; font-feature-settings: "tnum"; }
+    .stat-meta { font-size: 13px; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
 
-    .stat-meta {
-      font-size: 13px;
-      color: var(--text-muted);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    .progress-bar-bg { width: 100%; height: 8px; background: rgba(255,255,255,0.08); border-radius: 9999px; overflow: hidden; margin: 12px 0 6px 0; }
+    .progress-bar-fill { height: 100%; background: linear-gradient(to right, #10b981, #3b82f6); border-radius: 9999px; transition: width 0.5s ease; }
 
-    .progress-bar-bg {
-      width: 100%;
-      height: 8px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 9999px;
-      overflow: hidden;
-      margin: 12px 0 6px 0;
-    }
+    .info-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .info-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: rgba(255,255,255,0.03); border-radius: 8px; font-size: 13px; }
+    .info-label { color: var(--text-muted); }
+    .info-value { font-family: 'JetBrains Mono', monospace; font-weight: 500; }
 
-    .progress-bar-fill {
-      height: 100%;
-      background: linear-gradient(to right, #10b981, #3b82f6);
-      border-radius: 9999px;
-      transition: width 0.5s ease;
-    }
+    .full-width { grid-column: 1 / -1; }
 
-    .info-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .info-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 12px;
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 8px;
-      font-size: 13px;
-    }
-
-    .info-label {
-      color: var(--text-muted);
-    }
-
-    .info-value {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 500;
-    }
-
-    .full-width {
-      grid-column: 1 / -1;
-    }
-
-    .table-container {
-      overflow-x: auto;
-      margin-top: 12px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-      text-align: left;
-    }
-
-    th {
-      color: var(--text-muted);
-      font-weight: 600;
-      padding: 10px 14px;
-      border-bottom: 1px solid var(--card-border);
-      text-transform: uppercase;
-      font-size: 11px;
-      letter-spacing: 0.5px;
-    }
-
-    td {
-      padding: 12px 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-    }
+    .table-container { overflow-x: auto; margin-top: 12px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+    th { color: var(--text-muted); font-weight: 600; padding: 10px 14px; border-bottom: 1px solid var(--card-border); text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
+    td { padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-family: 'JetBrains Mono', monospace; font-size: 12px; }
 
     .btn {
-      background: linear-gradient(135deg, #3b82f6, #2563eb);
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; border: none;
+      padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
       transition: opacity 0.2s, transform 0.1s;
     }
-
-    .btn:hover {
-      opacity: 0.9;
-    }
-
-    .btn:active {
-      transform: scale(0.98);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text-main);
-      border: 1px solid var(--card-border);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    .btn-danger {
-      background: linear-gradient(135deg, #ef4444, #dc2626);
-    }
+    .btn:hover { opacity: 0.9; }
+    .btn:active { transform: scale(0.98); }
+    .btn-secondary { background: rgba(255,255,255,0.06); color: var(--text-main); border: 1px solid var(--card-border); }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); }
 
     .input-box {
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid var(--card-border);
-      border-radius: 8px;
-      padding: 8px 12px;
-      color: white;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      outline: none;
-      width: 100%;
+      background: rgba(0,0,0,0.3); border: 1px solid var(--card-border); border-radius: 8px;
+      padding: 8px 12px; color: white; font-family: 'JetBrains Mono', monospace;
+      font-size: 13px; outline: none; width: 100%;
     }
-
-    .input-box:focus {
-      border-color: var(--primary);
-    }
-
-    .form-group {
-      display: flex;
-      gap: 8px;
-      margin-top: 10px;
-    }
+    .input-box:focus { border-color: var(--primary); }
+    .form-group { display: flex; gap: 8px; margin-top: 10px; }
 
     footer {
-      text-align: center;
-      margin-top: 36px;
-      padding-top: 20px;
-      border-top: 1px solid var(--card-border);
-      color: var(--text-muted);
-      font-size: 13px;
+      text-align: center; margin-top: 36px; padding-top: 20px;
+      border-top: 1px solid var(--card-border); color: var(--text-muted); font-size: 13px;
+    }
+
+    .auto-refresh-indicator {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
     }
   </style>
 </head>
 <body>
   <div class="container">
+
+    <!-- Error Banner (shown when setup is wrong) -->
+    <div class="error-banner" id="error-banner">
+      <h3>⚠ Dashboard Cannot Connect</h3>
+      <p id="error-msg"></p>
+    </div>
+
     <header>
       <div class="brand">
         <div class="brand-logo">🛡️</div>
@@ -332,11 +198,12 @@
           <p>Layered Payment-Integrity Bridge & Threat Detection System</p>
         </div>
       </div>
-      <div style="display: flex; gap: 12px; align-items: center;">
+      <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+        <span class="auto-refresh-indicator" id="refresh-indicator">Auto-refresh: 5s</span>
         <button class="btn btn-secondary" onclick="loadAllData()">↻ Refresh</button>
         <div class="connection-status">
           <span class="dot" id="net-dot"></span>
-          <span id="net-status">Connecting to Ganache (7545)...</span>
+          <span id="net-status">Connecting...</span>
         </div>
       </div>
     </header>
@@ -351,11 +218,11 @@
         </div>
         <div class="stat-number" id="risk-score-val">-- / 100</div>
         <div class="progress-bar-bg">
-          <div class="progress-bar-fill" id="risk-progress" style="width: 100%;"></div>
+          <div class="progress-bar-fill" id="risk-progress" style="width: 0%;"></div>
         </div>
         <div class="stat-meta">
           <span>Dynamic Throttle:</span>
-          <span id="limit-multiplier" style="font-weight: 700; color: #60a5fa;">100% of Max</span>
+          <span id="limit-multiplier" style="font-weight: 700; color: #60a5fa;">--</span>
         </div>
       </div>
 
@@ -371,7 +238,7 @@
           <span id="token-supply-val" style="font-family: 'JetBrains Mono', monospace;">-- pgETH</span>
         </div>
         <div class="progress-bar-bg" style="margin-top: 14px;">
-          <div class="progress-bar-fill" style="width: 100%; background: #10b981;"></div>
+          <div class="progress-bar-fill" id="solvency-bar" style="width: 100%; background: #10b981;"></div>
         </div>
         <div class="stat-meta">
           <span style="font-size: 11px;">Condition: Bridge ETH &ge; Token Supply</span>
@@ -388,11 +255,11 @@
         <ul class="info-list">
           <li class="info-item">
             <span class="info-label">Bridge Paused (OZ Defender)</span>
-            <span class="info-value" id="flag-paused" style="color: #34d399;">NO</span>
+            <span class="info-value" id="flag-paused" style="color: #34d399;">--</span>
           </li>
           <li class="info-item">
             <span class="info-label">Bridge Cursed (Chainlink RMN)</span>
-            <span class="info-value" id="flag-cursed" style="color: #34d399;">NO</span>
+            <span class="info-value" id="flag-cursed" style="color: #34d399;">--</span>
           </li>
           <li class="info-item">
             <span class="info-label">Guardian Quorum (Wormhole)</span>
@@ -553,10 +420,14 @@
   </div>
 
   <script>
+    // ─────────────────────────── Config ───────────────────────────
     let web3;
     let deployed = {};
+    let refreshTimer = null;
 
-    // Standard Minimal ABIs
+    const GANACHE_URL = "http://127.0.0.1:7545";
+
+    // Minimal ABIs — only the view functions the dashboard reads
     const ABIS = {
       RiskScore: [
         {"inputs":[],"name":"getScore","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},
@@ -581,64 +452,127 @@
     };
 
     const ROLES = {
-      PaymentBridge: "Core Lock-and-Mint Bridge Hub",
-      WrappedToken: "Wrapped Token (pgETH) Contract",
-      InvariantGuard: "Formal Solvency & Dynamic Limits",
+      PaymentBridge:    "Core Lock-and-Mint Bridge Hub",
+      WrappedToken:     "Wrapped Token (pgETH) Contract",
+      InvariantGuard:   "Formal Solvency & Dynamic Limits",
       GuardianRegistry: "Wormhole t-of-n Multi-Sig Approvals",
-      RiskManagement: "Chainlink CCIP 2nd Verifier / Curse",
-      DefenderMonitor: "OZ Defender Rules & 2-of-3 Timelock",
+      RiskManagement:   "Chainlink CCIP 2nd Verifier / Curse",
+      DefenderMonitor:  "OZ Defender Rules & 2-of-3 Timelock",
       DetectionNetwork: "Forta Bot Alerting & Slashing Network",
-      RiskScore: "CertiK Skynet Public Dynamic Risk Score"
+      RiskScore:        "CertiK Skynet Public Dynamic Risk Score"
     };
 
     const TRANSFER_STATES = ["None", "Pending", "Verified (In Delay)", "Executed", "Challenged", "Refunded"];
-    const RISK_BANDS = ["LOW", "MEDIUM", "HIGH", "CRITICAL"];
-    const MULTIPLIERS = ["100%", "50%", "10%", "0%"];
+    const RISK_BANDS   = ["LOW", "MEDIUM", "HIGH", "CRITICAL"];
+    const MULTIPLIERS  = ["100%", "50%", "10%", "0%"];
+    const BAND_COLORS  = ["green", "yellow", "red", "red"];
 
+    // ─────────────────────── Helper Functions ────────────────────
+    function showError(msg) {
+      const banner = document.getElementById("error-banner");
+      document.getElementById("error-msg").innerHTML = msg;
+      banner.style.display = "block";
+    }
+
+    function hideError() {
+      document.getElementById("error-banner").style.display = "none";
+    }
+
+    function setConnection(state, text) {
+      const dot = document.getElementById("net-dot");
+      dot.className = "dot" + (state === "ok" ? " connected" : state === "warn" ? " warning" : "");
+      document.getElementById("net-status").innerText = text;
+    }
+
+    // ─────────────────────── Initialization ──────────────────────
     async function init() {
+      // Step 1: Connect to Ganache
       try {
-        web3 = new Web3("http://127.0.0.1:7545");
-        const isListening = await web3.eth.net.isListening();
-        if (isListening) {
-          document.getElementById("net-dot").className = "dot connected";
-          document.getElementById("net-status").innerText = "Ganache Connected (127.0.0.1:7545)";
-        }
+        web3 = new Web3(GANACHE_URL);
+        const listening = await web3.eth.net.isListening();
+        if (!listening) throw new Error("Not listening");
+        setConnection("ok", "Ganache Connected (127.0.0.1:7545)");
       } catch (err) {
-        document.getElementById("net-dot").className = "dot";
-        document.getElementById("net-status").innerText = "Ganache Offline";
-        console.error("Connection failed:", err);
+        setConnection("err", "Ganache Offline");
+        showError(
+          `Cannot reach Ganache at <code>${GANACHE_URL}</code>.<br><br>` +
+          `<b>Fix:</b> Make sure Ganache is running. Open a terminal and run:<br>` +
+          `<code>ganache --port 7545 --accounts 15 --defaultBalanceEther 10000 --deterministic --chain.networkId 5777</code><br><br>` +
+          `Also make sure you are accessing this dashboard via <code>http://localhost:3000</code> (not as a file:// URL).<br>` +
+          `Run: <code>npm run dashboard</code>`
+        );
         return;
       }
 
+      // Step 2: Load deployed addresses
       await loadDeployedAddresses();
-      await loadAllData();
-    }
 
-    async function loadDeployedAddresses() {
-      try {
-        const res = await fetch("../deployed.json");
-        if (res.ok) {
-          deployed = await res.json();
-        }
-      } catch (e) {
-        console.warn("Could not fetch deployed.json directly; falling back to hardcoded defaults:", e);
+      if (!deployed.PaymentBridge) {
+        setConnection("warn", "Connected — No Contracts");
+        showError(
+          `Ganache is running but no contract addresses were found.<br><br>` +
+          `<b>Fix:</b> Deploy the contracts first, then refresh this page:<br>` +
+          `<code>npm run migrate</code><br><br>` +
+          `If you opened this file directly (file://), you must use the HTTP server instead:<br>` +
+          `<code>npm run dashboard</code> → then open <code>http://localhost:3000</code>`
+        );
+        return;
       }
 
-      // Render Table
+      hideError();
+
+      // Step 3: Render contract table and load live data
+      renderContractTable();
+      await loadAllData();
+
+      // Step 4: Auto-refresh every 5 seconds
+      refreshTimer = setInterval(loadAllData, 5000);
+    }
+
+    // ─────────────────── Load Deployed Addresses ─────────────────
+    async function loadDeployedAddresses() {
+      // Try fetching deployed.json via HTTP (works when served by our server)
+      const paths = ["/deployed.json", "../deployed.json", "./deployed.json"];
+
+      for (const p of paths) {
+        try {
+          const res = await fetch(p);
+          if (res.ok) {
+            deployed = await res.json();
+            console.log("Loaded deployed.json from:", p);
+            return;
+          }
+        } catch (e) {
+          // try next path
+        }
+      }
+
+      console.warn("Could not fetch deployed.json from any path.");
+    }
+
+    // ──────────────────── Render Contract Table ──────────────────
+    function renderContractTable() {
       const tbody = document.getElementById("contracts-table-body");
       tbody.innerHTML = "";
+
+      if (Object.keys(deployed).length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: var(--text-muted);">No contracts deployed yet. Run: npm run migrate</td></tr>';
+        return;
+      }
+
       for (const [name, addr] of Object.entries(deployed)) {
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td style="font-weight: 600; color: #f1f5f9;">${name}</td>
           <td style="color: #94a3b8;">${ROLES[name] || "Security Component"}</td>
-          <td><a href="#" style="color: #60a5fa; text-decoration: none;">${addr}</a></td>
+          <td><span style="color: #60a5fa;">${addr}</span></td>
           <td><span class="badge badge-green">LIVE</span></td>
         `;
         tbody.appendChild(tr);
       }
     }
 
+    // ──────────────────── Load All Live Data ─────────────────────
     async function loadAllData() {
       if (!web3 || !deployed.PaymentBridge) return;
 
@@ -653,54 +587,77 @@
         const supplyEth = web3.utils.fromWei(supplyWei, "ether");
         document.getElementById("token-supply-val").innerText = parseFloat(supplyEth).toFixed(4) + " pgETH";
 
-        const surplus = (parseFloat(bridgeBalEth) - parseFloat(supplyEth)).toFixed(4);
-        document.getElementById("solvency-delta").innerText = surplus >= 0 ? `+${surplus} ETH surplus` : `Deficit: ${surplus} ETH`;
+        const surplus = parseFloat(bridgeBalEth) - parseFloat(supplyEth);
+        const surplusStr = surplus.toFixed(4);
+        document.getElementById("solvency-delta").innerText = surplus >= 0 ? `+${surplusStr} ETH surplus` : `Deficit: ${surplusStr} ETH`;
+
+        // Solvency badge
+        const invBadge = document.getElementById("invariant-badge");
+        if (surplus >= 0) {
+          invBadge.innerText = "HEALTHY";
+          invBadge.className = "badge badge-green";
+        } else {
+          invBadge.innerText = "BREACH";
+          invBadge.className = "badge badge-red";
+        }
 
         // 2. Risk Score & Band
         const riskContract = new web3.eth.Contract(ABIS.RiskScore, deployed.RiskScore);
-        const score = await riskContract.methods.getScore().call();
-        const band = await riskContract.methods.getBand().call();
-        
+        const score = Number(await riskContract.methods.getScore().call());
+        const band  = Number(await riskContract.methods.getBand().call());
+
         document.getElementById("risk-score-val").innerText = `${score} / 100`;
         document.getElementById("risk-progress").style.width = `${score}%`;
-        
-        const bandName = RISK_BANDS[band] || "LOW";
+
+        // Color the progress bar based on score
+        const progBar = document.getElementById("risk-progress");
+        if (score >= 80)      progBar.style.background = "linear-gradient(to right, #10b981, #3b82f6)";
+        else if (score >= 50) progBar.style.background = "linear-gradient(to right, #f59e0b, #eab308)";
+        else if (score >= 20) progBar.style.background = "linear-gradient(to right, #ef4444, #f59e0b)";
+        else                  progBar.style.background = "#ef4444";
+
+        const bandName  = RISK_BANDS[band]  || "LOW";
         const bandBadge = document.getElementById("risk-band-badge");
         bandBadge.innerText = bandName;
-        bandBadge.className = `badge badge-${band === "0" ? "green" : band === "1" ? "yellow" : "red"}`;
-        
-        document.getElementById("limit-multiplier").innerText = `${MULTIPLIERS[band]} of Max`;
+        bandBadge.className = `badge badge-${BAND_COLORS[band] || "green"}`;
 
-        // 3. Limits
+        document.getElementById("limit-multiplier").innerText = `${MULTIPLIERS[band] || "100%"} of Max`;
+
+        // 3. Effective Limits
         const invContract = new web3.eth.Contract(ABIS.InvariantGuard, deployed.InvariantGuard);
         const baseLimitWei = await invContract.methods.perTxLimit().call();
         const baseLimit = parseFloat(web3.utils.fromWei(baseLimitWei, "ether"));
-        const mult = band === "0" ? 1.0 : band === "1" ? 0.5 : band === "2" ? 0.1 : 0.0;
-        document.getElementById("limit-per-tx").innerText = `${(baseLimit * mult).toFixed(2)} ETH (Base: ${baseLimit} ETH)`;
+        const mult = band === 0 ? 1.0 : band === 1 ? 0.5 : band === 2 ? 0.1 : 0.0;
+        const effectiveLimit = (baseLimit * mult).toFixed(2);
+        document.getElementById("limit-per-tx").innerText = `${effectiveLimit} ETH (Base: ${baseLimit} ETH)`;
 
         // 4. Paused & Cursed Flags
         const bridgeContract = new web3.eth.Contract(ABIS.PaymentBridge, deployed.PaymentBridge);
         const isPaused = await bridgeContract.methods.paused().call();
         const flagPaused = document.getElementById("flag-paused");
-        flagPaused.innerText = isPaused ? "YES (HALTED)" : "NO";
+        flagPaused.innerText = isPaused ? "YES ⛔ HALTED" : "NO ✅";
         flagPaused.style.color = isPaused ? "#f87171" : "#34d399";
 
         const rmnContract = new web3.eth.Contract(ABIS.RiskManagement, deployed.RiskManagement);
         const isCursed = await rmnContract.methods.isCursed().call();
         const flagCursed = document.getElementById("flag-cursed");
-        flagCursed.innerText = isCursed ? "YES (HALTED)" : "NO";
+        flagCursed.innerText = isCursed ? "YES ⛔ HALTED" : "NO ✅";
         flagCursed.style.color = isCursed ? "#f87171" : "#34d399";
 
-        // 5. Detection Pool
+        // 5. Detection Reward Pool
         const detectContract = new web3.eth.Contract(ABIS.DetectionNetwork, deployed.DetectionNetwork);
         const poolWei = await detectContract.methods.rewardPool().call();
         document.getElementById("bot-reward-pool").innerText = parseFloat(web3.utils.fromWei(poolWei, "ether")).toFixed(4) + " ETH";
+
+        // Update refresh indicator
+        document.getElementById("refresh-indicator").innerText = "Live ● " + new Date().toLocaleTimeString();
 
       } catch (err) {
         console.error("Error refreshing data:", err);
       }
     }
 
+    // ─────────────────── Transfer Inspector ──────────────────────
     async function inspectTransfer() {
       const id = document.getElementById("inspect-transfer-id").value.trim();
       if (!id || !web3.utils.isHexStrict(id) || id.length !== 66) {
@@ -717,17 +674,18 @@
         }
 
         const resDiv = document.getElementById("transfer-result");
-        const tbody = document.getElementById("transfer-details-row");
+        const tbody  = document.getElementById("transfer-details-row");
         resDiv.style.display = "block";
-        
+
+        const stateIdx = Number(t.state);
         tbody.innerHTML = `
           <tr>
             <td>${t.sender.slice(0, 8)}...${t.sender.slice(-6)}</td>
             <td>${t.recipient.slice(0, 8)}...${t.recipient.slice(-6)}</td>
             <td style="color: #60a5fa; font-weight: 600;">${web3.utils.fromWei(t.netAmount, "ether")} ETH</td>
             <td>${web3.utils.fromWei(t.fee, "ether")} ETH</td>
-            <td><span class="badge ${t.state === "3" ? "badge-green" : t.state === "4" ? "badge-red" : "badge-yellow"}">${TRANSFER_STATES[t.state]}</span></td>
-            <td>${t.isLarge ? (t.state === "1" ? "Active (1h challenge)" : "Completed") : "N/A (Standard)"}</td>
+            <td><span class="badge ${stateIdx === 3 ? "badge-green" : stateIdx >= 4 ? "badge-red" : "badge-yellow"}">${TRANSFER_STATES[stateIdx] || "Unknown"}</span></td>
+            <td>${t.isLarge ? (stateIdx <= 2 ? "Active (1h challenge window)" : "Completed") : "N/A (Standard)"}</td>
           </tr>
         `;
       } catch (err) {
@@ -735,11 +693,25 @@
       }
     }
 
+    // ─────────────────── Copy Addresses ──────────────────────────
     function copyAllAddresses() {
-      navigator.clipboard.writeText(JSON.stringify(deployed, null, 2));
-      alert("Deployed addresses copied to clipboard!");
+      const text = JSON.stringify(deployed, null, 2);
+      navigator.clipboard.writeText(text).then(
+        () => alert("Deployed addresses copied to clipboard!"),
+        () => {
+          // Fallback for older browsers
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+          alert("Deployed addresses copied to clipboard!");
+        }
+      );
     }
 
+    // ─────────────────── Start ───────────────────────────────────
     window.addEventListener("DOMContentLoaded", init);
   </script>
 </body>

@@ -46,3 +46,4 @@ This document records key technical decisions, trade-offs, and justifications ma
 ### D7: Dual Check Solvency Invariant
 * **Decision:** `bridge.balance >= token.totalSupply()` is checked both before and after every mint, redeem, and refund action.
 * **Justification:** Guarantees that wrapped synthetic tokens in circulation are at all times fully collateralized by native locked ETH, preventing insolvency even in complex reentrancy or edge-case deposit flows.
+

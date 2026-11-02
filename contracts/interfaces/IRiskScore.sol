@@ -8,3 +8,4 @@ interface IRiskScore {
     function getBand() external view returns (Band);
     function getScore() external view returns (uint256);
 }
+

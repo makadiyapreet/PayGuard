@@ -101,3 +101,4 @@ contract("RiskManagement (03_risk_management.test.js)", (accounts) => {
     assert.equal((await rmn.curseEpoch()).toString(), "1", "Curse epoch should increment");
   });
 });
+

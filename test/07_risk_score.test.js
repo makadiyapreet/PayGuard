@@ -121,3 +121,4 @@ contract("RiskScore (07_risk_score.test.js)", (accounts) => {
     assert.equal(entry1.by, authorizedCaller);
   });
 });
+

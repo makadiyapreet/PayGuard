@@ -123,3 +123,4 @@ The key contribution of PayGuard is the bidirectional closed-loop connection bet
           ▼
 [ InvariantGuard.effectivePerTxLimit() auto-shrinks on-chain ]
 ```
+

@@ -130,3 +130,4 @@ contract RiskScore is Governed, IRiskScore {
         return history[index];
     }
 }
+

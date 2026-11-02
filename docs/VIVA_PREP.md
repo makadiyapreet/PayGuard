@@ -131,3 +131,4 @@ It guarantees that every synthetic `pgETH` in existence is 100% backed by native
 2. Simplified Forta: Machine learning models (FORTRESS) are simulated via deterministic rule thresholds.
 3. Fast Timelock: Timelock is set to 60 seconds for live demo friendliness (production uses 24–48 hours).
 4. Local Guardians: Guardians are Ganache test accounts rather than distributed HSMs.
+

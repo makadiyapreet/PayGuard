@@ -125,3 +125,4 @@ All compiled contracts strictly respect the EVM 24,576 byte deployment limit:
 | `InvariantGuard` | 3,198 bytes | 3.12 KB | **PASS** (< 24 KB) |
 | `DefenderMonitor` | 11,261 bytes | 11.00 KB | **PASS** (< 24 KB) |
 | `PaymentBridge` | 10,999 bytes | 10.74 KB | **PASS** (< 24 KB) |
+
