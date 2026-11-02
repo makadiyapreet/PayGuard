@@ -38,7 +38,14 @@ export async function sendTx({
   try {
     estimatedGas = await contract[method].estimateGas(...args, { value: valWei });
   } catch (err) {
-    revertInfo = decodeRevertReason(err);
+    let detailedError = err;
+    try {
+      // staticCall forces eth_call on Ganache which returns the exact revert reason string (e.g. PG:BAD_SIGS)
+      await contract[method].staticCall(...args, { value: valWei });
+    } catch (staticErr) {
+      detailedError = staticErr;
+    }
+    revertInfo = decodeRevertReason(detailedError);
     console.warn(`[tx-dryrun] ${contractName}.${method} reverted:`, revertInfo);
 
     if (!force) {

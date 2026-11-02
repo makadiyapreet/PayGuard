@@ -126,20 +126,20 @@ export function TopBar() {
         </button>
 
         {/* Acting As Account Selector */}
-        <div className="flex items-center gap-2 bg-slate-900/90 border border-slate-700/80 rounded-xl px-3 py-1.5">
-          <Users className="w-4 h-4 text-blue-400 shrink-0" />
+        <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700/80 rounded-xl px-3 py-1.5 shadow-sm">
+          <Users className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
           <div className="flex flex-col">
             <div className="flex items-center gap-1.5">
-              <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
                 Acting As:
               </span>
               <select
                 value={activeAccountIndex}
                 onChange={(e) => setActiveAccountIndex(Number(e.target.value))}
-                className="bg-transparent text-white font-bold text-xs outline-none cursor-pointer border-none p-0 pr-2 font-mono"
+                className="bg-transparent text-slate-900 dark:text-white font-bold text-xs outline-none cursor-pointer border-none p-0 pr-2 font-mono"
               >
                 {accounts.map((acc) => (
-                  <option key={acc.index} value={acc.index} className="bg-slate-900 text-white font-mono">
+                  <option key={acc.index} value={acc.index} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-mono">
                     #{acc.index} {acc.meta.label} ({shortAddress(acc.address)})
                   </option>
                 ))}

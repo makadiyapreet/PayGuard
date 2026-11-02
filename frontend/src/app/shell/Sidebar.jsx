@@ -79,7 +79,7 @@ const NAV_ITEMS = [
 
 export function Sidebar() {
   return (
-    <aside className="w-64 bg-[#0d121f] border-r border-slate-800/80 flex flex-col shrink-0 overflow-y-auto">
+    <aside className="w-64 bg-white dark:bg-[#0d121f] border-r border-slate-200 dark:border-slate-800/80 flex flex-col shrink-0 overflow-y-auto">
       <nav className="p-3 flex flex-col gap-6">
         {/* Core items */}
         <div className="flex flex-col gap-1">
@@ -90,8 +90,8 @@ export function Sidebar() {
               className={({ isActive }) =>
                 `flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
                   isActive
-                    ? "bg-blue-600/15 text-blue-400 border border-blue-500/30 font-bold"
-                    : "text-slate-400 hover:text-white hover:bg-slate-800/50"
+                    ? "bg-blue-50 text-blue-700 border border-blue-200 font-bold dark:bg-blue-600/15 dark:text-blue-400 dark:border-blue-500/30"
+                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800/50"
                 }`
               }
             >
@@ -121,8 +121,8 @@ export function Sidebar() {
                 className={({ isActive }) =>
                   `flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium transition-all ${
                     isActive
-                      ? "bg-slate-800 text-white font-semibold border border-slate-700"
-                      : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/40"
+                      ? "bg-slate-100 text-blue-700 font-semibold border border-slate-200 dark:bg-slate-800 dark:text-white dark:border-slate-700"
+                      : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800/40"
                   }`
                 }
               >

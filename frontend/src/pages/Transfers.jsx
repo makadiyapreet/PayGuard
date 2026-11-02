@@ -228,11 +228,11 @@ export function Transfers() {
       {/* Header */}
       <div className="flex justify-between items-center flex-wrap gap-4">
         <div>
-          <h2 className="text-2xl font-extrabold text-white tracking-tight flex items-center gap-2.5">
+          <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
             <span>Bridge Transfers</span>
             <LayerBadge layer="CORE" />
           </h2>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Deposit native ETH to mint pgETH. Large transfers (&ge; 5 ETH) enforce a 1-hour delay window.
           </p>
         </div>
@@ -251,21 +251,21 @@ export function Transfers() {
       {/* Forms Grid: Deposit & Redeem */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Deposit Card */}
-        <div className="bg-[#121826] border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+        <div className="bg-white dark:bg-[#121826] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 flex flex-col justify-between shadow-sm">
           <div>
             <div className="flex justify-between items-center mb-4">
-              <span className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+              <span className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
                 <span>Initiate Deposit</span>
                 <LayerBadge layer="L1" />
               </span>
-              <span className="text-xs text-slate-400 font-mono">
+              <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">
                 Fee: 10 bps (0.10%)
               </span>
             </div>
 
             <div className="space-y-4">
               <div>
-                <label className="text-xs font-semibold text-slate-400 block mb-1.5">
+                <label className="text-xs font-semibold text-slate-600 dark:text-slate-400 block mb-1.5">
                   Recipient Address
                 </label>
                 <input
@@ -273,12 +273,12 @@ export function Transfers() {
                   value={recipient}
                   onChange={(e) => setRecipient(e.target.value)}
                   placeholder="0x..."
-                  className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono outline-none focus:border-blue-500 transition-colors"
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 dark:text-white font-mono outline-none focus:border-blue-500 transition-colors"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-slate-400 block mb-1.5">
+                <label className="text-xs font-semibold text-slate-600 dark:text-slate-400 block mb-1.5">
                   Deposit Amount (ETH)
                 </label>
                 <input
@@ -286,7 +286,7 @@ export function Transfers() {
                   step="0.1"
                   value={amountEth}
                   onChange={(e) => setAmountEth(e.target.value)}
-                  className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono outline-none focus:border-blue-500 transition-colors"
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 dark:text-white font-mono outline-none focus:border-blue-500 transition-colors"
                 />
               </div>
 
@@ -351,21 +351,21 @@ export function Transfers() {
         </div>
 
         {/* Redeem Card */}
-        <div className="bg-[#121826] border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+        <div className="bg-white dark:bg-[#121826] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 flex flex-col justify-between shadow-sm">
           <div>
             <div className="flex justify-between items-center mb-4">
-              <span className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+              <span className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
                 <span>Redeem Wrapped ETH</span>
                 <LayerBadge layer="CORE" />
               </span>
-              <span className="text-xs text-slate-400 font-mono">
+              <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">
                 pgETH &rarr; Native ETH
               </span>
             </div>
 
             <div className="space-y-4">
               <div>
-                <label className="text-xs font-semibold text-slate-400 block mb-1.5">
+                <label className="text-xs font-semibold text-slate-600 dark:text-slate-400 block mb-1.5">
                   Amount of pgETH to Burn
                 </label>
                 <input
@@ -373,13 +373,13 @@ export function Transfers() {
                   step="0.1"
                   value={redeemAmount}
                   onChange={(e) => setRedeemAmount(e.target.value)}
-                  className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono outline-none focus:border-blue-500 transition-colors"
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 dark:text-white font-mono outline-none focus:border-indigo-500 transition-colors"
                 />
               </div>
 
-              <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-3.5 text-xs text-slate-400 font-mono space-y-1">
+              <div className="bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl p-3.5 text-xs text-slate-600 dark:text-slate-400 font-mono space-y-1">
                 <div>Redeem rate: 1.0 pgETH = 1.0 native ETH</div>
-                <div className="text-amber-400/90 text-[11px]">
+                <div className="text-amber-700 dark:text-amber-400 text-[11px]">
                   Notice: Rapid deposit-then-redeem trips Defender Rule #2 (RAPID_REDEEM) and halts the bridge.
                 </div>
               </div>
@@ -388,7 +388,7 @@ export function Transfers() {
 
           <button
             onClick={handleRedeem}
-            className="w-full mt-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition-colors shadow-lg shadow-purple-500/20"
+            className="w-full mt-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition-colors shadow-md shadow-indigo-500/20"
           >
             Redeem native ETH
           </button>
@@ -396,11 +396,11 @@ export function Transfers() {
       </div>
 
       {/* Transfers Table */}
-      <div className="bg-[#121826] border border-slate-800 rounded-2xl p-6">
+      <div className="bg-white dark:bg-[#121826] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+          <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
             <span>All Monitored Bridge Transfers</span>
-            <span className="text-xs bg-slate-800 text-slate-400 font-mono px-2 py-0.5 rounded">
+            <span className="text-xs bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono px-2 py-0.5 rounded">
               {transferList.length} total
             </span>
           </h3>
@@ -414,7 +414,7 @@ export function Transfers() {
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs font-mono">
               <thead>
-                <tr className="text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
+                <tr className="text-slate-500 dark:text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-200 dark:border-slate-800">
                   <th className="py-3 px-3">Transfer ID</th>
                   <th className="py-3 px-3">Sender / Recipient</th>
                   <th className="py-3 px-3">Net Amount</th>
@@ -424,24 +424,24 @@ export function Transfers() {
                   <th className="py-3 px-3">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
                 {transferList.map((t) => (
                   <tr
                     key={t.id}
                     onClick={() => openTransferDrawer(t)}
-                    className="hover:bg-slate-800/40 cursor-pointer transition-colors"
+                    className="hover:bg-slate-50 dark:hover:bg-slate-800/40 cursor-pointer transition-colors"
                   >
-                    <td className="py-3 px-3 text-blue-400 font-bold">
+                    <td className="py-3 px-3 text-blue-600 dark:text-blue-400 font-bold">
                       {shortAddress(t.id)}
                     </td>
-                    <td className="py-3 px-3 text-slate-300">
+                    <td className="py-3 px-3 text-slate-800 dark:text-slate-300">
                       <div>From: {shortAddress(t.sender)}</div>
                       <div className="text-slate-500">To: {shortAddress(t.recipient)}</div>
                     </td>
-                    <td className="py-3 px-3 text-white font-bold">
+                    <td className="py-3 px-3 text-slate-900 dark:text-white font-bold">
                       {t.netAmount} ETH
                     </td>
-                    <td className="py-3 px-3 text-slate-400">
+                    <td className="py-3 px-3 text-slate-500 dark:text-slate-400">
                       {t.fee} ETH
                     </td>
                     <td className="py-3 px-3">
