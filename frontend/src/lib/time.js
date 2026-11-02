@@ -33,3 +33,4 @@ export async function mineBlock() {
   }
   return block;
 }
+

@@ -136,3 +136,4 @@ export function decodeRevertReason(error) {
     hint: "Inspect transaction inputs and account permissions.",
   };
 }
+

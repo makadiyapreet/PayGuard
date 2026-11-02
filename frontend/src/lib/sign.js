@@ -55,3 +55,4 @@ export function sortSignaturesBySigner(signedList) {
     return 0;
   });
 }
+

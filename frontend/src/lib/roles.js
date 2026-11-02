@@ -19,3 +19,4 @@ export const STATIC_ROLES = [
 export function getRoleMeta(index) {
   return STATIC_ROLES[index] || { index, label: `Account #${index}`, category: "Other", desc: "EVM Account" };
 }
+

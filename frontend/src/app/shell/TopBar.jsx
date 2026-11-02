@@ -4,14 +4,14 @@ import { useAccountStore } from "../../store/accountStore.js";
 import { useUiStore } from "../../store/uiStore.js";
 import { StatusLight } from "../../components/StatusLight.jsx";
 import { shortAddress, formatDateTime } from "../../lib/format.js";
-import { Shield, Users, Radio, HelpCircle, Monitor } from "lucide-react";
+import { Shield, Users, Radio, HelpCircle, Monitor, Sun, Moon } from "lucide-react";
 
 export function TopBar() {
   const { connected, blockNumber, chainId, chainTime, paused, cursed, riskScore, riskBand, perTxLimitEff } =
     useChainStore();
   const { accounts, activeAccountIndex, setActiveAccountIndex, balances, liveRoles } =
     useAccountStore();
-  const { vivaMode, toggleVivaMode, presentationMode, togglePresentationMode } = useUiStore();
+  const { vivaMode, toggleVivaMode, presentationMode, togglePresentationMode, theme, toggleTheme } = useUiStore();
 
   const currentAccount = accounts[activeAccountIndex];
   const activeRoles = currentAccount ? liveRoles[currentAccount.address.toLowerCase()] : null;
@@ -84,7 +84,21 @@ export function TopBar() {
       </div>
 
       {/* Right controls: Acting-As Switcher + Toggles */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2.5">
+        {/* Light / Dark Theme toggle */}
+        <button
+          onClick={toggleTheme}
+          className={`px-2.5 py-1.5 rounded-lg border text-xs font-semibold flex items-center gap-1.5 transition-colors ${
+            theme === "light"
+              ? "bg-amber-500/10 border-amber-500/40 text-amber-600 hover:bg-amber-500/20"
+              : "bg-slate-900 border-slate-800 text-slate-300 hover:text-white hover:bg-slate-800"
+          }`}
+          title={theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
+        >
+          {theme === "light" ? <Sun className="w-4 h-4 text-amber-500" /> : <Moon className="w-4 h-4 text-blue-400" />}
+          <span className="hidden md:inline capitalize">{theme}</span>
+        </button>
+
         {/* Viva Mode & Presentation toggles */}
         <button
           onClick={toggleVivaMode}
@@ -148,3 +162,4 @@ export function TopBar() {
     </header>
   );
 }
+

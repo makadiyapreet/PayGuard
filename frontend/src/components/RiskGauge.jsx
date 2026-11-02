@@ -45,3 +45,4 @@ export function RiskGauge({ score = 100 }) {
     </div>
   );
 }
+

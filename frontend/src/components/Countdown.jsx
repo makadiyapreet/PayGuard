@@ -35,3 +35,4 @@ export function Countdown({ targetTimestamp, onExpired, label = "remaining" }) {
     </span>
   );
 }
+

@@ -42,3 +42,4 @@ export function computeApprovalDigest({
   );
   return keccak256(encoded);
 }
+

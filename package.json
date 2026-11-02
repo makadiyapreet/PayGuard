@@ -5,6 +5,7 @@
   "scripts": {
     "compile": "truffle compile",
     "migrate": "truffle migrate --reset --network ganache",
+    "reset": "truffle migrate --reset --network ganache && node scripts/export-frontend-artifacts.js",
     "test": "truffle test --network ganache",
     "demo": "truffle exec scripts/demo.js --network ganache",
     "seed": "truffle exec scripts/seed-demo-state.js --network ganache",

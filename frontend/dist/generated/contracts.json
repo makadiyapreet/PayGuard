@@ -2,11 +2,11 @@
   "chainId": 1337,
   "networkId": 5777,
   "rpcUrl": "http://127.0.0.1:7545",
-  "deployedAt": "2026-11-02T11:50:12.634Z",
+  "deployedAt": "2026-11-02T12:18:47.413Z",
   "deployer": "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1",
   "contracts": {
     "RiskScore": {
-      "address": "0xA2a1ccaB58a416459576764881380408555f0fAf",
+      "address": "0xf420dD692664F0cFCDC0a4667D341A8afF4878FB",
       "abi": [
         {
           "inputs": [
@@ -365,7 +365,7 @@
       "solution": "CertiK Skynet"
     },
     "WrappedToken": {
-      "address": "0x08238aD7707355dcC4A2f7819C00B0a22a4955C1",
+      "address": "0x0457c52E1A7931E250C2004bDdEbA70f116793b5",
       "abi": [
         {
           "inputs": [
@@ -988,7 +988,7 @@
       "solution": "—"
     },
     "GuardianRegistry": {
-      "address": "0xD46123b08c56530A8e09bB65B4DFEfA72418e97B",
+      "address": "0x9FB25BCDc880115269a87bbc4AA69Ea8930987Fc",
       "abi": [
         {
           "inputs": [
@@ -1107,7 +1107,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -1120,7 +1121,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -1139,7 +1141,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -1158,7 +1161,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -1184,7 +1188,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -1216,7 +1221,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -1240,7 +1246,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -1272,7 +1279,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -1324,7 +1332,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -1337,7 +1346,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -1350,7 +1360,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         }
       ],
       "deployBlock": 1,
@@ -1359,7 +1370,7 @@
       "solution": "Wormhole Guardian Network"
     },
     "RiskManagement": {
-      "address": "0xef5C8Ae82202f2dAAE319A9b664Fc00074b565f4",
+      "address": "0x432547ef8dAa759969a2C98967e690D9A8033c23",
       "abi": [
         {
           "inputs": [
@@ -1539,7 +1550,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -1558,7 +1570,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -1582,7 +1595,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -1595,7 +1609,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -1614,7 +1629,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -1627,7 +1643,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -1651,7 +1668,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -1664,7 +1682,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -1683,7 +1702,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -1702,7 +1722,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -1715,7 +1736,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -1728,7 +1750,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -1783,7 +1806,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -1855,7 +1879,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -1868,7 +1893,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -1881,7 +1907,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -1905,7 +1932,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -1934,7 +1962,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -1947,7 +1976,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -1966,7 +1996,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         }
       ],
       "deployBlock": 1,
@@ -1975,7 +2006,7 @@
       "solution": "Chainlink CCIP RMN"
     },
     "DetectionNetwork": {
-      "address": "0x7200B43892c05231Fb5841dEf2782ceA5bbf4E14",
+      "address": "0xC078A083ccc916C5db53Bbd378e2daBf62BfdA91",
       "abi": [
         {
           "inputs": [
@@ -2257,7 +2288,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -2291,7 +2323,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -2304,7 +2337,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -2317,7 +2351,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -2330,7 +2365,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -2349,7 +2385,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -2362,7 +2399,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -2375,7 +2413,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -2388,7 +2427,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -2414,7 +2454,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -2440,18 +2481,21 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "stateMutability": "payable",
-          "type": "receive"
+          "type": "receive",
+          "payable": true
         },
         {
           "inputs": [],
           "name": "registerBot",
           "outputs": [],
           "stateMutability": "payable",
-          "type": "function"
+          "type": "function",
+          "payable": true
         },
         {
           "inputs": [
@@ -2526,7 +2570,8 @@
           "name": "fundRewardPool",
           "outputs": [],
           "stateMutability": "payable",
-          "type": "function"
+          "type": "function",
+          "payable": true
         },
         {
           "inputs": [
@@ -2545,7 +2590,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -2586,7 +2632,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -2637,7 +2684,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -2650,7 +2698,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -2663,7 +2712,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -2719,7 +2769,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         }
       ],
       "deployBlock": 1,
@@ -2728,7 +2779,7 @@
       "solution": "Forta Network"
     },
     "InvariantGuard": {
-      "address": "0xAD99276C293B7c491A8070d5E45EB380fC0f8976",
+      "address": "0x04c45cd829c8f72f64B3617fc89F45c150485BC5",
       "abi": [
         {
           "inputs": [
@@ -2884,7 +2935,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -2897,7 +2949,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -2910,7 +2963,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -2929,7 +2983,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -2942,7 +2997,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -2955,7 +3011,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -2968,7 +3025,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -3005,7 +3063,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -3018,7 +3077,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -3044,7 +3104,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -3057,7 +3118,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -3070,7 +3132,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -3083,7 +3146,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -3096,7 +3160,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -3109,7 +3174,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -3162,7 +3228,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -3226,7 +3293,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -3239,7 +3307,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -3289,7 +3358,7 @@
       "solution": "Certora Prover"
     },
     "DefenderMonitor": {
-      "address": "0x4F475aD35D69b274e4EC58D76eA4Ce7081336049",
+      "address": "0x9BB4E75ab86C0e7B28e7cC6Fd18a4d5D2e0ffB36",
       "abi": [
         {
           "inputs": [
@@ -3676,7 +3745,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -3689,7 +3759,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -3702,7 +3773,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -3726,7 +3798,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -3739,7 +3812,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -3758,7 +3832,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -3777,7 +3852,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -3790,7 +3866,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -3803,7 +3880,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -3837,7 +3915,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -3850,7 +3929,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -4124,7 +4204,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -4170,7 +4251,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4183,7 +4265,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -4229,7 +4312,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4242,7 +4326,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -4298,7 +4383,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4311,7 +4397,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4324,7 +4411,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4364,7 +4452,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -4388,7 +4477,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -4429,7 +4519,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -4480,7 +4571,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         }
       ],
       "deployBlock": 1,
@@ -4489,7 +4581,7 @@
       "solution": "OpenZeppelin Defender"
     },
     "PaymentBridge": {
-      "address": "0x7e294552E729f9987910C9090B5F4155D29139db",
+      "address": "0x7f791Ac091CD2d6e57c6d489b6307803614eCD1D",
       "abi": [
         {
           "inputs": [
@@ -4782,7 +4874,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4795,7 +4888,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4808,7 +4902,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4821,7 +4916,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4834,7 +4930,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4847,7 +4944,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4860,7 +4958,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -4879,7 +4978,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4892,7 +4992,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4905,7 +5006,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4918,7 +5020,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4931,7 +5034,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4944,7 +5048,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4957,7 +5062,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4970,7 +5076,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4983,7 +5090,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -4996,7 +5104,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -5073,7 +5182,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -5086,11 +5196,13 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "stateMutability": "payable",
-          "type": "receive"
+          "type": "receive",
+          "payable": true
         },
         {
           "inputs": [
@@ -5109,7 +5221,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -5128,7 +5241,8 @@
             }
           ],
           "stateMutability": "payable",
-          "type": "function"
+          "type": "function",
+          "payable": true
         },
         {
           "inputs": [
@@ -5288,7 +5402,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -5326,7 +5441,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -5345,7 +5461,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -5358,7 +5475,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [],
@@ -5391,7 +5509,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -5445,7 +5564,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -5479,7 +5599,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         },
         {
           "inputs": [
@@ -5503,7 +5624,8 @@
             }
           ],
           "stateMutability": "view",
-          "type": "function"
+          "type": "function",
+          "constant": true
         }
       ],
       "deployBlock": 1,
@@ -5849,7 +5971,7 @@
           "type": "function"
         }
       ],
-      "bytecode": "0x60a060405234801561001057600080fd5b506040516105e53803806105e583398101604081905261002f91610052565b6001600160a01b0316608052600080546001600160a01b03191633179055610082565b60006020828403121561006457600080fd5b81516001600160a01b038116811461007b57600080fd5b9392505050565b6080516105416100a460003960008181610183015261028701526105416000f3fe6080604052600436106100555760003560e01c80633c64f04b1461005a5780638da5cb5b146100e05780639233264614610118578063affed0e01461013a578063f340fa011461015e578063fc0c546a14610171575b600080fd5b34801561006657600080fd5b506100ae61007536600461049b565b600160208190526000918252604090912080549181015460028201546003909201546001600160a01b0393841693909116919060ff1684565b604080516001600160a01b03958616815294909316602085015291830152151560608201526080015b60405180910390f35b3480156100ec57600080fd5b50600054610100906001600160a01b031681565b6040516001600160a01b0390911681526020016100d7565b34801561012457600080fd5b5061013861013336600461049b565b6101a5565b005b34801561014657600080fd5b5061015060025481565b6040519081526020016100d7565b61015061016c3660046104b4565b610334565b34801561017d57600080fd5b506101007f000000000000000000000000000000000000000000000000000000000000000081565b6000546001600160a01b031633146101f05760405162461bcd60e51b81526020600482015260096024820152682727aa2fa7aba722a960b91b60448201526064015b60405180910390fd5b6000818152600160205260409020600381015460ff16156102465760405162461bcd60e51b815260206004820152601060248201526f1053149150511657d1561150d555115160821b60448201526064016101e7565b60038101805460ff1916600190811790915581015460028201546040516340c10f1960e01b81526001600160a01b03928316600482015260248101919091527f0000000000000000000000000000000000000000000000000000000000000000909116906340c10f1990604401600060405180830381600087803b1580156102cd57600080fd5b505af11580156102e1573d6000803e3d6000fd5b50505050600181015460028201546040519081526001600160a01b039091169083907f3ebd008f401abae5d95b2b8fb3708fcf36c816b62e3a289358e61a0bf1e8b0d59060200160405180910390a35050565b60008034116103735760405162461bcd60e51b815260206004820152600b60248201526a16915493d7d05353d5539560aa1b60448201526064016101e7565b46303384346002600081548092919061038b906104e4565b909155506040805160208101979097526001600160a01b039586169087015292841660608601529216608084015260a083019190915260c082015260e00160408051601f198184030181528282528051602091820120608084018352338085526001600160a01b0387811684870181815234888801818152600060608b018181528882526001808b52918b90209b518c549088166001600160a01b0319918216178d559451918c01805492909716919094161790945592516002890155516003909701805497151560ff199098169790971790965593519384529094509184917fcfccc5211684bc31ce945214025a7453ba30a1ffcc38fcb691ce742437f3f256910160405180910390a4919050565b6000602082840312156104ad57600080fd5b5035919050565b6000602082840312156104c657600080fd5b81356001600160a01b03811681146104dd57600080fd5b9392505050565b60006001820161050457634e487b7160e01b600052601160045260246000fd5b506001019056fea2646970667358221220a074234f33d40c1d0dbfa0a4d27f77ccc86888e3ca1b7d6bbbbf6c4a2fb0597a64736f6c63430008140033"
+      "bytecode": "0x60a060405234801561001057600080fd5b506040516105e53803806105e583398101604081905261002f91610052565b6001600160a01b0316608052600080546001600160a01b03191633179055610082565b60006020828403121561006457600080fd5b81516001600160a01b038116811461007b57600080fd5b9392505050565b6080516105416100a460003960008181610183015261028701526105416000f3fe6080604052600436106100555760003560e01c80633c64f04b1461005a5780638da5cb5b146100e05780639233264614610118578063affed0e01461013a578063f340fa011461015e578063fc0c546a14610171575b600080fd5b34801561006657600080fd5b506100ae61007536600461049b565b600160208190526000918252604090912080549181015460028201546003909201546001600160a01b0393841693909116919060ff1684565b604080516001600160a01b03958616815294909316602085015291830152151560608201526080015b60405180910390f35b3480156100ec57600080fd5b50600054610100906001600160a01b031681565b6040516001600160a01b0390911681526020016100d7565b34801561012457600080fd5b5061013861013336600461049b565b6101a5565b005b34801561014657600080fd5b5061015060025481565b6040519081526020016100d7565b61015061016c3660046104b4565b610334565b34801561017d57600080fd5b506101007f000000000000000000000000000000000000000000000000000000000000000081565b6000546001600160a01b031633146101f05760405162461bcd60e51b81526020600482015260096024820152682727aa2fa7aba722a960b91b60448201526064015b60405180910390fd5b6000818152600160205260409020600381015460ff16156102465760405162461bcd60e51b815260206004820152601060248201526f1053149150511657d1561150d555115160821b60448201526064016101e7565b60038101805460ff1916600190811790915581015460028201546040516340c10f1960e01b81526001600160a01b03928316600482015260248101919091527f0000000000000000000000000000000000000000000000000000000000000000909116906340c10f1990604401600060405180830381600087803b1580156102cd57600080fd5b505af11580156102e1573d6000803e3d6000fd5b50505050600181015460028201546040519081526001600160a01b039091169083907f3ebd008f401abae5d95b2b8fb3708fcf36c816b62e3a289358e61a0bf1e8b0d59060200160405180910390a35050565b60008034116103735760405162461bcd60e51b815260206004820152600b60248201526a16915493d7d05353d5539560aa1b60448201526064016101e7565b46303384346002600081548092919061038b906104e4565b909155506040805160208101979097526001600160a01b039586169087015292841660608601529216608084015260a083019190915260c082015260e00160408051601f198184030181528282528051602091820120608084018352338085526001600160a01b0387811684870181815234888801818152600060608b018181528882526001808b52918b90209b518c549088166001600160a01b0319918216178d559451918c01805492909716919094161790945592516002890155516003909701805497151560ff199098169790971790965593519384529094509184917fcfccc5211684bc31ce945214025a7453ba30a1ffcc38fcb691ce742437f3f256910160405180910390a4919050565b6000602082840312156104ad57600080fd5b5035919050565b6000602082840312156104c657600080fd5b81356001600160a01b03811681146104dd57600080fd5b9392505050565b60006001820161050457634e487b7160e01b600052601160045260246000fd5b506001019056fea26469706673582212203cc1a54b490ae5778c7e991fce56e5931fc625ed7b2fbf42a8c8ffd745597fcf64736f6c63430008140033"
     },
     "ForceSend": {
       "abi": [

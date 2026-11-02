@@ -10,3 +10,4 @@ export function EthAmount({ value, symbol = "ETH", decimals = 4, className = "" 
     </span>
   );
 }
+

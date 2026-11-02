@@ -60,9 +60,9 @@ export async function sendTx({
   // 2. Execute Transaction
   const txOptions = { value: valWei };
   if (force) {
-    txOptions.gasLimit = 500000n;
+    txOptions.gasLimit = 800000n;
   } else {
-    txOptions.gasLimit = (estimatedGas * 120n) / 100n; // 20% buffer
+    txOptions.gasLimit = (estimatedGas * 130n) / 100n; // 30% buffer
   }
 
   const txHashPlaceholder = `pending-${Date.now()}`;
@@ -120,3 +120,4 @@ export async function sendTx({
     return { success: false, error: dec || err };
   }
 }
+

@@ -23,3 +23,4 @@ export function LayerBadge({ layer = "CORE", size = "sm" }) {
     </span>
   );
 }
+

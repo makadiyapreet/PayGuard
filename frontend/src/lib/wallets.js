@@ -75,3 +75,4 @@ export async function getSignerForAccount(indexOrAddress) {
 export function getWalletMode() {
   return walletMode;
 }
+

@@ -165,3 +165,4 @@ export async function syncLogs() {
     store.setSyncing(false);
   }
 }
+

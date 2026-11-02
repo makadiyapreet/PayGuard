@@ -179,14 +179,22 @@ payguard/
 │   ├── 07_risk_score.test.js            # Tests 41–44
 │   ├── 08_attack_scenarios.test.js      # Tests 45–52
 │   └── 09_governance_fees_gas.test.js   # Tests 53–61 (including 20-deposit fuzz test)
+├── frontend/                            # React 18 + Vite 5 + Tailwind Control Center
+│   ├── src/                             # Pages, L1-L3 views, governance & dev tools
+│   ├── public/generated/contracts.json  # Auto-synced ABIs & addresses from migration
+│   └── scripts/smoke.mjs                # Fast frontend health & connectivity check
 ├── scripts/
 │   ├── demo.js                          # 8-step live demonstration script
+│   ├── seed-demo-state.js               # Seeds live transfers, bots, and alerts
 │   ├── attack.js                        # Penetration attack testing script
+│   ├── export-frontend-artifacts.js     # Synchronizes Truffle artifacts to frontend
 │   ├── report.js                        # System state report generator
 │   ├── rmn.js                           # CCIP independent digest verification node
 │   └── sign.js                          # CLI guardian signature collector
 └── docs/
     ├── ARCHITECTURE.md                  # Component & Mermaid sequence/state diagrams
+    ├── USER_GUIDE.md                    # Step-by-step interactive dashboard manual
+    ├── FACULTY_VIVA_DEMO_GUIDE.md       # Complete viva presentation & talk track
     ├── DECISIONS.md                     # Architectural decisions & design choices
     ├── SECURITY_NOTES.md                # Threat model & Slither audit justifications
     ├── TEST_REPORT.md                   # Real test outputs & bytecode sizes (< 24 KB)
@@ -196,6 +204,19 @@ payguard/
     ├── DEMO_CHECKLIST.md                # Pre-exam rehearsal checklist & fallback steps
     └── CONTRIBUTIONS.md                 # Roll number ownership breakdown (413 / 414 / 417)
 ```
+
+---
+
+## PayGuard Control Center (Frontend Dashboard)
+
+The **PayGuard Control Center** is a real-time web interface running locally on [http://127.0.0.1:5173](http://127.0.0.1:5173).
+
+- **Theme Support:** Features a 1-click **Light / Dark Mode toggle** in the top navigation bar.
+- **Clean Reset Command:** `npm run reset` resets all contracts to a 0-transaction state.
+- **Seeding Demo Command:** `npm run seed` creates live transfers, guardian approvals, and bot alerts.
+- **All-Functions Audit:** Run `node frontend/scripts/verify-all-functions.mjs` to verify all 10 core contract functions against Ganache.
+
+For detailed instructions, see [USER_GUIDE.md](USER_GUIDE.md).
 
 ---
 

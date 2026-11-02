@@ -15,3 +15,4 @@ export function StatusLight({ status = "ok", label, tooltip }) {
     </div>
   );
 }
+

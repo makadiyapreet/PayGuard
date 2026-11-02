@@ -43,3 +43,4 @@ export async function getAuxArtifact(name) {
   }
   return reg.artifacts[name];
 }
+

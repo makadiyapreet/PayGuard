@@ -20,3 +20,4 @@ export function StateBadge({ state = 0 }) {
     </span>
   );
 }
+

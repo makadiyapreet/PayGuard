@@ -26,3 +26,4 @@ export function KpiCard({ title, value, subtext, layer, icon: Icon, badgeText })
     </div>
   );
 }
+
