@@ -7,6 +7,10 @@
     "migrate": "truffle migrate --reset --network ganache",
     "test": "truffle test --network ganache",
     "demo": "truffle exec scripts/demo.js --network ganache",
+    "seed": "truffle exec scripts/seed-demo-state.js --network ganache",
+    "frontend": "npm --prefix frontend run dev",
+    "frontend:build": "npm --prefix frontend run build",
+    "frontend:smoke": "node frontend/scripts/smoke.mjs",
     "attack": "truffle exec scripts/attack.js --network ganache",
     "slither": "slither . --solc-remaps @openzeppelin/=node_modules/@openzeppelin/",
     "dashboard": "node scripts/serve-dashboard.js"

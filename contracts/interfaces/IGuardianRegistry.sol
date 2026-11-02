@@ -5,5 +5,5 @@ interface IGuardianRegistry {
     function verifyApproval(bytes32 digest, bytes[] calldata sigs) external view returns (bool);
     function markUsed(bytes32 digest) external;
     function isGuardian(address who) external view returns (bool);
+    function isUsed(bytes32 digest) external view returns (bool);
 }
-

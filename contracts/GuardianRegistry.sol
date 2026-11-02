@@ -86,6 +86,10 @@ contract GuardianRegistry is BridgeBound, IGuardianRegistry {
         emit ApprovalUsed(digest);
     }
 
+    function isUsed(bytes32 digest) external view override returns (bool) {
+        return used[digest];
+    }
+
     /**
      * @notice Adds a new guardian. Callable only by governance.
      * @param guardian Address of guardian to add.

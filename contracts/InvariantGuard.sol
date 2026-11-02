@@ -108,6 +108,68 @@ contract InvariantGuard is BridgeBound, IInvariantGuard {
     }
 
     /**
+     * @notice View-only check of limit rules without modifying storage.
+     * @param user The deposit sender.
+     * @param amount The deposit amount.
+     */
+    function previewCheck(
+        address user,
+        uint256 amount
+    ) external view override returns (bool ok, string memory reason) {
+        uint256 effPerTx = effectivePerTxLimit();
+        if (amount > effPerTx) {
+            return (false, "PG:TX_LIMIT");
+        }
+
+        uint256 currentWindow = block.timestamp / windowSeconds;
+        uint256 effUser = effectiveUserDailyLimit();
+        if (spentByUser[currentWindow][user] + amount > effUser) {
+            return (false, "PG:USER_LIMIT");
+        }
+
+        uint256 effGlobal = effectiveGlobalDailyLimit();
+        if (globalSpent[currentWindow] + amount > effGlobal) {
+            return (false, "PG:GLOBAL_LIMIT");
+        }
+
+        return (true, "");
+    }
+
+    /**
+     * @notice Comprehensive snapshot of base and effective limits for a given user.
+     */
+    function limitsSnapshot(
+        address user
+    )
+        external
+        view
+        returns (
+            uint256 perTxBase,
+            uint256 perTxEff,
+            uint256 userBase,
+            uint256 userEff,
+            uint256 userSpent,
+            uint256 globalBase,
+            uint256 globalEff,
+            uint256 globalSpentAmount,
+            uint256 multiplierPct,
+            uint256 windowEndsAt
+        )
+    {
+        uint256 currentWindow = block.timestamp / windowSeconds;
+        perTxBase = perTxLimit;
+        perTxEff = effectivePerTxLimit();
+        userBase = userDailyLimit;
+        userEff = effectiveUserDailyLimit();
+        userSpent = spentByUser[currentWindow][user];
+        globalBase = globalDailyLimit;
+        globalEff = effectiveGlobalDailyLimit();
+        globalSpentAmount = globalSpent[currentWindow];
+        multiplierPct = multiplier();
+        windowEndsAt = (currentWindow + 1) * windowSeconds;
+    }
+
+    /**
      * @notice Verifies solvency invariant: locked bridge ETH balance >= wrapped token total supply.
      */
     function checkInvariant() external view override returns (bool) {

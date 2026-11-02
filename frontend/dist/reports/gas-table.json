@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-11-02T11:50:50.270Z",
+  "entries": [
+    {
+      "fn": "deposit",
+      "contract": "PaymentBridge",
+      "layer": "L1",
+      "samples": 1,
+      "gasMin": 539781,
+      "gasAvg": 539781,
+      "gasMax": 539781
+    },
+    {
+      "fn": "bless (2 nodes)",
+      "contract": "RiskManagement",
+      "layer": "L2",
+      "samples": 1,
+      "gasMin": 125784,
+      "gasAvg": 125784,
+      "gasMax": 125784
+    },
+    {
+      "fn": "execute",
+      "contract": "PaymentBridge",
+      "layer": "L2",
+      "samples": 1,
+      "gasMin": 202060,
+      "gasAvg": 202060,
+      "gasMax": 202060
+    }
+  ],
+  "lifecycle": {
+    "payguard": {
+      "deposit": 539781,
+      "bless": 125784,
+      "execute": 202060,
+      "total": 867625
+    },
+    "baseline": {
+      "deposit": 115386,
+      "mint": 70472,
+      "total": 185858
+    },
+    "overheadPct": 366.82
+  }
+}

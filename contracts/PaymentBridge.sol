@@ -54,6 +54,7 @@ contract PaymentBridge is Governed, ReentrancyGuard, IPausable {
     bool public paused;
     mapping(bytes32 => Transfer) public transfers;
     mapping(address => uint256) public nonces;
+    bytes32[] private transferIds;
 
     uint256 public totalDeposited;
     uint256 public totalExecuted;
@@ -189,6 +190,7 @@ contract PaymentBridge is Governed, ReentrancyGuard, IPausable {
 
         transferCount++;
         totalDeposited += msg.value;
+        transferIds.push(id);
         bytes32 digest = getDigest(id);
 
         if (fee > 0) {
@@ -372,6 +374,149 @@ contract PaymentBridge is Governed, ReentrancyGuard, IPausable {
 
     receive() external payable {
         revert("PG:NO_DIRECT_ETH");
+    }
+
+    /**
+     * @notice Returns transfer ID at specified index.
+     */
+    function transferIdAt(uint256 i) external view returns (bytes32) {
+        require(i < transferIds.length, "PG:INVALID_INDEX");
+        return transferIds[i];
+    }
+
+    /**
+     * @notice Returns total number of transfers recorded.
+     */
+    function transferTotal() external view returns (uint256) {
+        return transferIds.length;
+    }
+
+    /**
+     * @notice Returns core bridge configuration.
+     */
+    function getConfig()
+        external
+        view
+        returns (
+            uint256 _feeBps,
+            uint256 _largeThreshold,
+            uint256 _largeDelay,
+            uint256 _ttl,
+            bool _paused
+        )
+    {
+        return (feeBps, largeThreshold, largeDelay, ttl, paused);
+    }
+
+    /**
+     * @notice Previews deposit execution without state mutation.
+     * @return ok True if deposit would pass all checks.
+     * @return layer Blocking layer: 0=CORE, 1=L1, 2=L2, 3=L3.
+     * @return reason Revert reason if failed.
+     * @return fee Estimated protocol fee.
+     * @return net Estimated net pgETH amount.
+     * @return isLarge Whether transfer triggers delay window.
+     */
+    function previewDeposit(
+        address user,
+        address recipient,
+        uint256 amount
+    )
+        external
+        view
+        returns (
+            bool ok,
+            uint8 layer,
+            string memory reason,
+            uint256 fee,
+            uint256 net,
+            bool isLarge
+        )
+    {
+        if (recipient == address(0)) {
+            return (false, 0, "PG:ZERO_ADDR", 0, 0, false);
+        }
+        if (amount == 0) {
+            return (false, 0, "PG:ZERO_AMOUNT", 0, 0, false);
+        }
+        if (paused) {
+            return (false, 3, "PG:PAUSED", 0, 0, false);
+        }
+        if (rmn.isCursed()) {
+            return (false, 2, "PG:CURSED", 0, 0, false);
+        }
+        if (monitor.isBlacklisted(user) || monitor.isBlacklisted(recipient)) {
+            return (false, 3, "PG:BLACKLISTED", 0, 0, false);
+        }
+
+        (bool guardOk, string memory guardReason) = guard.previewCheck(user, amount);
+        if (!guardOk) {
+            return (false, 1, guardReason, 0, 0, false);
+        }
+
+        fee = (amount * feeBps) / 10000;
+        net = amount - fee;
+        isLarge = (net >= largeThreshold);
+        return (true, 0, "", fee, net, isLarge);
+    }
+
+    /**
+     * @notice Previews transfer execution against all consensus and verification rules.
+     * @return ok True if execution would succeed.
+     * @return layer Blocking layer: 0=CORE, 1=L1, 2=L2, 3=L3.
+     * @return reason Error string on failure.
+     */
+    function previewExecute(
+        bytes32 id,
+        bytes[] calldata sigs
+    ) external view returns (bool ok, uint8 layer, string memory reason) {
+        Transfer storage t = transfers[id];
+        if (t.state != TransferState.Pending) {
+            return (false, 0, "PG:NOT_PENDING");
+        }
+        if (block.timestamp > t.expiresAt) {
+            return (false, 0, "PG:EXPIRED");
+        }
+        if (paused) {
+            return (false, 3, "PG:PAUSED");
+        }
+        if (rmn.isCursed()) {
+            return (false, 2, "PG:CURSED");
+        }
+        if (monitor.isBlacklisted(t.recipient)) {
+            return (false, 3, "PG:BLACKLISTED");
+        }
+
+        bytes32 digest = getDigest(id);
+        if (!registry.verifyApproval(digest, sigs)) {
+            return (false, 2, "PG:BAD_SIGS");
+        }
+        if (!rmn.isBlessed(id, digest)) {
+            return (false, 2, "PG:NOT_BLESSED");
+        }
+        if (registry.isUsed(digest)) {
+            return (false, 2, "PG:REPLAY");
+        }
+
+        return (true, 0, "");
+    }
+
+    /**
+     * @notice Previews transfer refund eligibility.
+     */
+    function previewRefund(
+        bytes32 id
+    ) external view returns (bool ok, string memory reason) {
+        Transfer storage t = transfers[id];
+        bool canRefund = (t.state == TransferState.Challenged) ||
+            (t.state == TransferState.Pending && block.timestamp > t.expiresAt) ||
+            ((t.state == TransferState.Pending || t.state == TransferState.Verified) &&
+                rmn.isCursed());
+
+        if (canRefund) {
+            return (true, "");
+        }
+        return (false, "PG:CANNOT_REFUND");
     }
 }
 

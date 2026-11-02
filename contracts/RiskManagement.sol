@@ -186,5 +186,35 @@ contract RiskManagement is Governed, IRiskManagement {
     function nodeCount() external view returns (uint256) {
         return nodes.length;
     }
+
+    /**
+     * @notice Returns bless count for a given (id, digest) pair.
+     */
+    function blessCountOf(bytes32 id, bytes32 digest) external view returns (uint256) {
+        bytes32 key = keccak256(abi.encode(id, digest));
+        return blessCount[key];
+    }
+
+    /**
+     * @notice Returns whether a specific node has blessed an (id, digest) pair.
+     */
+    function hasBlessed(bytes32 id, bytes32 digest, address node) external view returns (bool) {
+        bytes32 key = keccak256(abi.encode(id, digest));
+        return blessedBy[key][node];
+    }
+
+    /**
+     * @notice Returns curse votes in the current epoch.
+     */
+    function curseVotesNow() external view returns (uint256) {
+        return curseVotes[curseEpoch];
+    }
+
+    /**
+     * @notice Returns whether a specific node has voted to curse in the current epoch.
+     */
+    function hasCursed(address node) external view returns (bool) {
+        return cursedBy[curseEpoch][node];
+    }
 }
 

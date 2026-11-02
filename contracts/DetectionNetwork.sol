@@ -43,8 +43,11 @@ contract DetectionNetwork is BridgeBound, ReentrancyGuard, IDetectionNetwork {
     mapping(address => uint256) public pendingRewards;
     Alert[] private alerts;
     IRiskScore public immutable riskScore;
+    address[] public botList;
+    mapping(address => bool) private hasBeenBot;
 
     event BotRegistered(address indexed bot, uint256 stake);
+    event Slashed(address indexed bot, uint256 amount);
     event AlertRaised(
         uint256 indexed alertId,
         address indexed bot,
@@ -98,6 +101,11 @@ contract DetectionNetwork is BridgeBound, ReentrancyGuard, IDetectionNetwork {
             unbondRequestedAt: 0,
             pendingAlerts: 0
         });
+
+        if (!hasBeenBot[msg.sender]) {
+            hasBeenBot[msg.sender] = true;
+            botList.push(msg.sender);
+        }
 
         emit BotRegistered(msg.sender, msg.value);
     }
@@ -164,6 +172,7 @@ contract DetectionNetwork is BridgeBound, ReentrancyGuard, IDetectionNetwork {
                 emit BotDeregistered(a.bot);
             }
             emit AlertResolved(alertId, a.bot, false, slash);
+            emit Slashed(a.bot, slash);
         }
 
         b.pendingAlerts--;
@@ -257,6 +266,32 @@ contract DetectionNetwork is BridgeBound, ReentrancyGuard, IDetectionNetwork {
     receive() external payable {
         rewardPool += msg.value;
         emit RewardPoolFunded(msg.sender, msg.value);
+    }
+
+    /**
+     * @notice Returns array of all registered bot addresses.
+     */
+    function getBots() external view returns (address[] memory) {
+        return botList;
+    }
+
+    /**
+     * @notice Returns paginated alerts.
+     */
+    function getAlerts(uint256 offset, uint256 limit) external view returns (Alert[] memory) {
+        if (offset >= alerts.length) {
+            return new Alert[](0);
+        }
+        uint256 to = offset + limit;
+        if (to > alerts.length) {
+            to = alerts.length;
+        }
+        uint256 size = to - offset;
+        Alert[] memory result = new Alert[](size);
+        for (uint256 i = 0; i < size; i++) {
+            result[i] = alerts[offset + i];
+        }
+        return result;
     }
 }
 

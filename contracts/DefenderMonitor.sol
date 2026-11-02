@@ -79,6 +79,7 @@ contract DefenderMonitor is BridgeBound, IDefenderMonitor {
     event ProposalSubmitted(uint256 indexed id, address indexed proposer, address indexed target, bytes data);
     event ProposalConfirmed(uint256 indexed id, address indexed owner);
     event ProposalConfirmationRevoked(uint256 indexed id, address indexed owner);
+    event ProposalRevoked(uint256 indexed id, address indexed owner);
     event ProposalQueued(uint256 indexed id, uint256 eta);
     event ProposalExecuted(uint256 indexed id, address indexed executor);
     event ProposalCancelled(uint256 indexed id);
@@ -331,6 +332,7 @@ contract DefenderMonitor is BridgeBound, IDefenderMonitor {
         confirmedBy[id][msg.sender] = false;
         p.confirmations--;
         emit ProposalConfirmationRevoked(id, msg.sender);
+        emit ProposalRevoked(id, msg.sender);
 
         if (p.confirmations < required) {
             p.eta = 0;
@@ -481,5 +483,45 @@ contract DefenderMonitor is BridgeBound, IDefenderMonitor {
      */
     function getOwners() external view returns (address[] memory) {
         return owners;
+    }
+
+    /**
+     * @notice Returns array of all rules.
+     */
+    function getRules() external view returns (Rule[] memory) {
+        return rules;
+    }
+
+    /**
+     * @notice Returns whether an owner has confirmed a proposal.
+     */
+    function hasConfirmed(uint256 id, address owner) external view returns (bool) {
+        return confirmedBy[id][owner];
+    }
+
+    /**
+     * @notice Returns statistics for a specific user.
+     */
+    function getUserStats(address user) external view returns (UserStats memory) {
+        return stats[user];
+    }
+
+    /**
+     * @notice Returns paginated incidents.
+     */
+    function getIncidents(uint256 offset, uint256 limit) external view returns (Incident[] memory) {
+        if (offset >= incidents.length) {
+            return new Incident[](0);
+        }
+        uint256 to = offset + limit;
+        if (to > incidents.length) {
+            to = incidents.length;
+        }
+        uint256 size = to - offset;
+        Incident[] memory result = new Incident[](size);
+        for (uint256 i = 0; i < size; i++) {
+            result[i] = incidents[offset + i];
+        }
+        return result;
     }
 }
