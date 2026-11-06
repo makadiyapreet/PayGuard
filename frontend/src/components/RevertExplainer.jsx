@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useTxStore } from "../store/txStore.js";
 import { LayerBadge } from "./LayerBadge.jsx";
 import { sendTx } from "../lib/tx.js";
-import { AlertTriangle, X, ShieldAlert, ArrowRight } from "lucide-react";
+import { AlertTriangle, X, ShieldAlert, ArrowRight, ExternalLink } from "lucide-react";
 
 export function RevertExplainer() {
   const pendingRevert = useTxStore((s) => s.pendingRevert);
@@ -63,6 +64,44 @@ export function RevertExplainer() {
           <div className="text-xs bg-white dark:bg-black/40 border border-rose-200 dark:border-rose-900/40 rounded-lg p-3 text-slate-700 dark:text-slate-300 shadow-sm leading-relaxed">
             <span className="font-bold text-rose-700 dark:text-rose-300">Defense Mechanism:</span>{" "}
             {revertInfo?.hint}
+
+            {/* Contextual navigation link */}
+            {revertInfo?.code === "PG:NOT_BLESSED" && (
+              <div className="mt-2.5 pt-2 border-t border-rose-100 dark:border-rose-900/30">
+                <Link
+                  to="/l2/risk-network"
+                  onClick={clearPendingRevert}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow-sm transition-colors"
+                >
+                  <span>Go to Risk Network (RMN) to Bless Transfer</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            )}
+            {revertInfo?.code === "PG:BAD_SIGS" && (
+              <div className="mt-2.5 pt-2 border-t border-rose-100 dark:border-rose-900/30">
+                <Link
+                  to="/l2/guardians"
+                  onClick={clearPendingRevert}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow-sm transition-colors"
+                >
+                  <span>Gather 3 Guardian Signatures in Studio</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            )}
+            {revertInfo?.code === "PG:NOT_CHALLENGER" && (
+              <div className="mt-2.5 pt-2 border-t border-rose-100 dark:border-rose-900/30">
+                <Link
+                  to="/l3/challenge"
+                  onClick={clearPendingRevert}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow-sm transition-colors"
+                >
+                  <span>Switch to Authorized Challenger (Bot or Guardian)</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            )}
           </div>
         </div>
 

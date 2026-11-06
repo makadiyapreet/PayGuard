@@ -19,33 +19,33 @@ export function DeploymentInspector() {
         </p>
       </div>
 
-      <div className="bg-[#121826] border border-slate-800 rounded-2xl p-6">
-        <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4">
+      <div className="bg-white dark:bg-[#121826] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
+        <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4">
           Architecture Contracts Registry
         </h3>
 
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
           <table className="w-full text-left text-xs font-mono">
-            <thead>
-              <tr className="text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
-                <th className="py-2.5 px-3">Contract</th>
-                <th className="py-2.5 px-3">Layer</th>
-                <th className="py-2.5 px-3">Researched Solution</th>
-                <th className="py-2.5 px-3">Address</th>
-                <th className="py-2.5 px-3">Status</th>
+            <thead className="bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+              <tr className="text-slate-700 dark:text-slate-300 uppercase text-[10px] tracking-wider font-bold">
+                <th className="py-3 px-3.5">Contract</th>
+                <th className="py-3 px-3.5">Layer</th>
+                <th className="py-3 px-3.5">Researched Solution</th>
+                <th className="py-3 px-3.5">Address</th>
+                <th className="py-3 px-3.5">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 bg-white dark:bg-transparent">
               {Object.entries(contracts).map(([name, data]) => (
-                <tr key={name} className="hover:bg-slate-800/30">
-                  <td className="py-3 px-3 text-white font-bold">{name}</td>
-                  <td className="py-3 px-3">
+                <tr key={name} className="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+                  <td className="py-3 px-3.5 text-slate-900 dark:text-white font-bold">{name}</td>
+                  <td className="py-3 px-3.5">
                     <LayerBadge layer={data.layer} />
                   </td>
-                  <td className="py-3 px-3 text-slate-300">{data.solution}</td>
-                  <td className="py-3 px-3 text-blue-400 select-all">{data.address}</td>
-                  <td className="py-3 px-3">
-                    <span className="text-emerald-400 flex items-center gap-1 font-bold text-[11px]">
+                  <td className="py-3 px-3.5 text-slate-700 dark:text-slate-300 font-medium">{data.solution}</td>
+                  <td className="py-3 px-3.5 text-blue-700 dark:text-blue-400 select-all font-semibold">{data.address}</td>
+                  <td className="py-3 px-3.5">
+                    <span className="text-emerald-700 dark:text-emerald-400 flex items-center gap-1 font-bold text-[11px]">
                       <CheckCircle2 className="w-3.5 h-3.5" /> LIVE
                     </span>
                   </td>

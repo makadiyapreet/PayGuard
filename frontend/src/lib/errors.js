@@ -1,187 +1,187 @@
 export const REVERT_DICTIONARY = {
   "PG:PAUSED": {
-    title: "Bridge Operation Paused",
+    title: "Bridge is Temporarily Paused",
     layer: "L3",
-    meaning: "The bridge has been halted by OpenZeppelin Defender automated rules or emergency multi-sig action.",
-    hint: "Unpause requires an on-chain DefenderMonitor multi-sig proposal with 2-of-3 owner signatures and a 60-second timelock.",
+    meaning: "The bridge has been halted by the emergency circuit breaker to protect funds.",
+    hint: "Go to the Governance page to submit an Unpause Proposal, or wait for admins to unpause.",
   },
   "PG:CURSED": {
-    title: "Bridge Cursed by RMN",
+    title: "Bridge Cursed by Chainlink CCIP",
     layer: "L2",
-    meaning: "The Chainlink CCIP Risk Management Network quorum has voted to curse (halt) the bridge due to anomalous consensus behavior.",
-    hint: "Lifting the curse requires an uncurse governance proposal passed through DefenderMonitor.",
+    meaning: "The Risk Management Network detected an anomaly and voted to halt the bridge.",
+    hint: "The curse can be lifted by an uncurse governance proposal passed through DefenderMonitor.",
   },
   "PG:BLACKLISTED": {
-    title: "Address Blacklisted",
+    title: "Address is Blacklisted",
     layer: "L3",
-    meaning: "The sender or recipient address has been blacklisted by automated risk rules or governance.",
+    meaning: "This address has been flagged for suspicious activity and blocked from using the bridge.",
     hint: "Blacklisted addresses cannot deposit, execute, or redeem funds across the bridge.",
   },
   "PG:TX_LIMIT": {
-    title: "Per-Transaction Limit Exceeded",
+    title: "Transfer Limit Exceeded",
     layer: "L1",
-    meaning: "The requested deposit exceeds the effective per-transaction limit enforced by InvariantGuard.",
-    hint: "Limits dynamically shrink when the CertiK Skynet RiskScore drops into lower bands (MEDIUM 50%, HIGH 10%, CRITICAL 0%).",
+    meaning: "You tried to transfer more than the allowed per-transaction limit (Base: 10 ETH).",
+    hint: "Reduce your deposit amount to 10 ETH or less, or check the Pre-Execution Gate page.",
   },
   "PG:USER_LIMIT": {
-    title: "User Daily Limit Exceeded",
+    title: "Daily User Limit Exceeded",
     layer: "L1",
-    meaning: "The user has exhausted their 24-hour cumulative deposit limit.",
-    hint: "Wait for the current limit window to expire or deposit from a different address.",
+    meaning: "This address has reached its maximum daily transfer allowance for the 24-hour period.",
+    hint: "Wait for the 24-hour window to reset, or transfer using a different account.",
   },
   "PG:GLOBAL_LIMIT": {
-    title: "Global Protocol Daily Limit Exceeded",
+    title: "Global Bridge Volume Limit Exceeded",
     layer: "L1",
-    meaning: "The bridge has reached maximum allowable volume across all users for the current 24-hour window.",
-    hint: "Global limits protect total liquidity. Wait for the window reset.",
+    meaning: "The bridge has hit its total daily volume cap across all users to protect liquidity.",
+    hint: "Wait for the daily volume cap to refresh at midnight.",
   },
   "PG:BAD_SIGS": {
-    title: "Guardian Approval Signatures Invalid",
+    title: "Missing or Invalid Guardian Signatures",
     layer: "L2",
-    meaning: "Signatures are fewer than threshold (3), duplicate, unsorted by address, or contain non-guardian signers.",
-    hint: "Ensure at least 3 distinct guardian signatures are gathered and passed in strictly ascending address order.",
+    meaning: "You need at least 3 out of 5 valid Wormhole Guardian signatures to approve this transfer.",
+    hint: "Click 'Sign Quorum (3 Guardians)' on the Guardian Studio page to gather all 3 signatures in 1 click.",
   },
   "PG:NOT_BLESSED": {
-    title: "Missing RMN Secondary Blessing",
+    title: "Missing Chainlink CCIP RMN Blessing",
     layer: "L2",
-    meaning: "The independent Chainlink CCIP Risk Management Network quorum has not blessed this approval digest.",
-    hint: "Both Risk Nodes (R1 and R2) must verify and call bless(id, digest) before execution is permitted.",
-  },
-  "PG:REPLAY": {
-    title: "Replay Attack Detected",
-    layer: "L2",
-    meaning: "This approval digest was already executed and permanently marked as used in GuardianRegistry.",
-    hint: "Each transfer digest is unique (includes per-sender nonce). Old approvals cannot be reused.",
-  },
-  "PG:INVARIANT": {
-    title: "Solvency Invariant Violation",
-    layer: "L1",
-    meaning: "The invariant check failed: Bridge native ETH balance is less than total pgETH token supply.",
-    hint: "The protocol guarantees 1:1 backing at all times. Execution halts immediately if backing is impaired.",
-  },
-  "PG:NOT_GOV": {
-    title: "Governance Access Denied",
-    layer: "CORE",
-    meaning: "Caller is not the authorized governance address (DefenderMonitor).",
-    hint: "All admin actions must be proposed and executed through the multi-sig timelock.",
-  },
-  "PG:NOT_BRIDGE": {
-    title: "Bridge Bound Access Denied",
-    layer: "CORE",
-    meaning: "Caller is not the registered PaymentBridge contract.",
-    hint: "Only PaymentBridge can trigger limit checks, mark digests used, or pause states.",
-  },
-  "PG:BRIDGE_SET": {
-    title: "Bridge Address Already Immutable",
-    layer: "CORE",
-    meaning: "setBridge() has already been executed on this contract.",
-    hint: "Bridge association is one-time immutable for security.",
-  },
-  "PG:NOTHING_TO_RECOVER": {
-    title: "No Risk Score Recovery Due",
-    layer: "L3",
-    meaning: "Insufficient time has elapsed since the last incident, or score is already at maximum (100).",
-    hint: "RiskScore recovers linearly (+5 points per 3600 seconds) after incident cooldown.",
-  },
-  "PG:CALL_FAILED": {
-    title: "Governance Proposal Target Call Reverted",
-    layer: "L3",
-    meaning: "The underlying target contract reverted during execution of the governance proposal.",
-    hint: "Inspect target function parameters and permissions.",
-  },
-  "PG:NO_DIRECT_ETH": {
-    title: "Direct ETH Transfer Rejected",
-    layer: "CORE",
-    meaning: "PaymentBridge receive() rejects raw ether transfers without deposit metadata.",
-    hint: "Use deposit(recipient) with value to initiate a valid cross-chain transfer.",
+    meaning: "Both independent CCIP risk nodes (R1 and R2) must verify and bless this transfer before execution.",
+    hint: "Both independent CCIP risk nodes (R1 and R2) must verify and bless this transfer. Go to the Risk Network (RMN) page to bless.",
   },
   "PG:NOT_CHALLENGER": {
-    title: "Unauthorized Challenger (Access Denied)",
+    title: "Permission Denied: Only Forta Bots or Guardians Can Challenge",
     layer: "L3",
-    meaning: "Caller is not authorized to challenge transfers. Only Wormhole Guardians (Accounts 1-5), Forta Staked Bots (Accounts 8-9), or Governance can issue security challenges.",
-    hint: "Switch 'Acting As' in the top bar to a Guardian (e.g. Account #1) or Forta Bot (Account #8), or use the quick challenger selector on the Challenge page.",
+    meaning: "Regular users cannot challenge transactions. This prevents attackers from griefing normal transfers.",
+    hint: "Select '#8 Forta Bot 1' or '#1 Guardian 1' from the challenger dropdown on the Challenge page.",
   },
   "PG:CANNOT_CHALLENGE": {
     title: "Transfer Ineligible for Challenge",
     layer: "L3",
-    meaning: "Transfers can only be challenged while in Pending state (State 1) or inside the 1-hour delayed verification window (State 2) before execution.",
-    hint: "Transfers already executed, refunded, or expired cannot be challenged.",
+    meaning: "Only pending transfers or transfers currently inside the 1-hour delay window can be challenged.",
+    hint: "Transfers that are already executed, refunded, or expired cannot be challenged.",
   },
   "PG:CANNOT_REFUND": {
-    title: "Refund Conditions Not Satisfied",
+    title: "Refund Not Available Yet",
     layer: "L3",
-    meaning: "Transfers can only be refunded if they were challenged (State 4), expired past their deadline, or if the bridge is currently cursed by RMN.",
-    hint: "A challenge must be recorded or the expiration deadline must elapse before funds can be refunded to the sender.",
+    meaning: "Transfers can only be refunded if they were challenged, expired past their deadline, or if the bridge is cursed.",
+    hint: "Challenge the transfer first on the Challenge page, or wait for its expiration deadline.",
   },
   "PG:DELAY_ACTIVE": {
-    title: "Challenge Delay Window Active",
+    title: "1-Hour Fraud Delay Window Active",
     layer: "L1",
-    meaning: "Large transfers (>= 5 ETH) enforce a mandatory 1-hour delay window before destination pgETH can be minted.",
-    hint: "Wait until the challenge window elapses, or fast-forward EVM time in Dev Tools.",
+    meaning: "Transfers of 5 ETH or more have a mandatory 1-hour inspection window before pgETH can be minted.",
+    hint: "Wait until the countdown timer expires, or fast-forward EVM time in Dev Tools.",
   },
   "PG:NOT_PENDING": {
-    title: "Transfer Not in Pending State",
+    title: "Transfer Already Processed",
     layer: "CORE",
-    meaning: "The transfer is no longer in Pending state (it has already been approved, executed, or refunded).",
-    hint: "Only newly deposited transfers in State 1 (Pending) can be approved by Guardians.",
+    meaning: "This transfer is no longer pending. It has already been executed, challenged, or refunded.",
+    hint: "Select an active pending transfer from the list to approve.",
   },
   "PG:NOT_VERIFIED": {
-    title: "Transfer Not in Verified State",
+    title: "Transfer Not Yet Verified",
     layer: "CORE",
-    meaning: "The transfer has not passed dual-consensus verification or is not delayed.",
-    hint: "Run execute() with Guardian and RMN signatures first to verify the transfer.",
+    meaning: "This large transfer has not completed initial Guardian and RMN verification.",
+    hint: "Run execute() with Guardian signatures first to verify the transfer.",
   },
   "PG:EXPIRED": {
     title: "Transfer Expired",
     layer: "CORE",
-    meaning: "The transfer validity window has elapsed. Unexecuted transfers past expiration cannot be finalized.",
-    hint: "Expired transfers can be safely refunded to the original sender using refund().",
+    meaning: "The time limit to execute this transfer has elapsed. It can no longer be minted.",
+    hint: "You can safely claim a full refund of your ETH on the Challenge & Refund page.",
+  },
+  "PG:REPLAY": {
+    title: "Replay Attack Blocked",
+    layer: "L2",
+    meaning: "This exact transfer approval was already used and cannot be executed a second time.",
+    hint: "Each transfer has a unique ID and nonce. Create a new deposit to test again.",
+  },
+  "PG:INVARIANT": {
+    title: "1:1 Solvency Invariant Breached",
+    layer: "L1",
+    meaning: "The bridge's locked ETH balance would fall below the pgETH token supply.",
+    hint: "PayGuard guarantees 1:1 backing at all times. Execution was halted to protect solvency.",
+  },
+  "PG:NO_DIRECT_ETH": {
+    title: "Direct ETH Send Rejected",
+    layer: "CORE",
+    meaning: "You cannot send raw ETH directly to the contract address without calling deposit().",
+    hint: "Use the deposit form on the Transfers page to bridge your funds.",
+  },
+  "PG:NOT_GOV": {
+    title: "Governance Access Required",
+    layer: "CORE",
+    meaning: "Only the DefenderMonitor multi-sig governance contract can call this admin function.",
+    hint: "Submit a proposal through the Governance Multi-Sig page.",
   },
   "PG:NOT_MONITOR": {
-    title: "Caller Not Defender Monitor",
+    title: "Defender Monitor Access Required",
     layer: "L3",
-    meaning: "This function can only be invoked by the DefenderMonitor contract.",
-    hint: "Ensure automated emergency pauses are routed through DefenderMonitor.",
+    meaning: "This emergency function can only be triggered by the automated DefenderMonitor.",
+    hint: "Use Defender rules or the Emergency Pause button.",
   },
 };
 
 export function decodeRevertReason(error) {
   if (!error) return null;
 
-  // Search common locations in ethers errors
-  const errStr = String(error?.reason || error?.data || error?.message || error);
+  // Search across all nested fields where ethers v6 and Ganache place revert strings
+  const searchParts = [
+    typeof error === "string" ? error : "",
+    error?.reason,
+    error?.shortMessage,
+    error?.revert?.args?.[0],
+    error?.info?.error?.data?.reason,
+    error?.info?.error?.message,
+    error?.error?.message,
+    error?.data,
+    error?.message,
+    typeof error?.info === "object" ? JSON.stringify(error.info) : "",
+  ].filter(Boolean);
+
+  const fullStr = searchParts.join(" ");
+
   for (const [code, meta] of Object.entries(REVERT_DICTIONARY)) {
-    if (errStr.includes(code)) {
+    if (fullStr.includes(code)) {
       return { code, ...meta };
     }
   }
 
   // OpenZeppelin standard errors
-  if (errStr.includes("AccessControlUnauthorizedAccount")) {
+  if (fullStr.includes("AccessControlUnauthorizedAccount")) {
     return {
       code: "AccessControlUnauthorizedAccount",
-      title: "Access Control Error",
+      title: "Permission Denied: Missing Role",
       layer: "CORE",
-      meaning: "Caller does not hold the required AccessControl role (e.g. MINTER_ROLE).",
-      hint: "Check role assignments on WrappedToken.",
+      meaning: "Your account does not have the required role to call this function.",
+      hint: "Switch to an account with the appropriate permissions.",
     };
   }
-  if (errStr.includes("ReentrancyGuardReentrantCall")) {
+  if (fullStr.includes("ReentrancyGuardReentrantCall")) {
     return {
       code: "ReentrancyGuardReentrantCall",
-      title: "Reentrancy Guard Triggered",
+      title: "Reentrancy Attack Blocked",
       layer: "CORE",
-      meaning: "A re-entrant call was intercepted and blocked by OpenZeppelin ReentrancyGuard.",
-      hint: "State changes occurred before external call, and the lock prevented nested execution.",
+      meaning: "A recursive re-entrant call was intercepted and stopped by ReentrancyGuard.",
+      hint: "The smart contract prevented a duplicate withdrawal inside the callback.",
+    };
+  }
+
+  // Common wallet / estimate gas fallback
+  if (fullStr.includes("missing revert data") || fullStr.includes("CALL_EXCEPTION")) {
+    return {
+      code: "EXECUTION_INTERCEPTED",
+      title: "Transaction Stopped by Security Rules",
+      layer: "CORE",
+      meaning: "The smart contract rejected this transaction during pre-flight checks. One of the defense conditions (such as missing signatures, RMN blessing, unauthorized role, or paused bridge) was not met.",
+      hint: "Review the required steps (gather 3 Guardian signatures, verify RMN blessing, or switch to an authorized role) before submitting.",
     };
   }
 
   return {
-    code: "UNKNOWN",
-    title: "Transaction Reverted",
+    code: "ACTION_BLOCKED",
+    title: "Transaction Stopped by Smart Contract",
     layer: "CORE",
-    meaning: errStr.length > 200 ? errStr.slice(0, 200) + "..." : errStr,
-    hint: "Inspect transaction inputs and account permissions.",
+    meaning: "The transaction did not pass the smart contract security conditions.",
+    hint: "Check your transaction parameters, account permissions, and contract state.",
   };
 }
-

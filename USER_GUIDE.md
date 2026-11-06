@@ -126,41 +126,53 @@ In the top right navigation bar, click the **Acting As** dropdown to switch betw
 ---
 
 ### 8. Layer 3: CertiK Risk Score & Bands (`/l3/risk-score`)
-- Continuous risk score ($0$ to $100$) with dynamic multiplier bands:
-  - **LOW (80–100):** 100% transfer limit.
-  - **MEDIUM (50–79):** 50% transfer limit.
-  - **HIGH (20–49):** 10% transfer limit.
+- Continuous risk score (0 to 100) with dynamic multiplier bands:
+  - **LOW (80–100):** 100% transfer limit (10.0 ETH base limit).
+  - **MEDIUM (50–79):** 50% transfer limit (5.0 ETH).
+  - **HIGH (20–49):** 10% transfer limit (1.0 ETH).
   - **CRITICAL (0–19):** 0% transfer limit (auto-halt).
-- **Recover Points:** Triggers recovery step (+5 points per period) to simulate score rehabilitation.
+- **Recover Points:** Triggers recovery step (+5 points per period) to demonstrate score rehabilitation without manual intervention.
 
 ---
 
-### 9. Multi-Sig Governance (`/governance`)
+### 9. Layer 3: Challenge & Refund Center (`/l3/challenge-refund`)
+- **Authorized Challengers Only:** Only registered Forta Bots (Accounts #8, #9) or Wormhole Guardians (Accounts #1–#5) can challenge pending or delayed transfers (`PG:NOT_CHALLENGER`).
+- **Submit As Dropdown:** Select `#8 Forta Bot 1` to challenge a suspicious transfer in 1 click.
+- **Demo Unauthorized Revert:** Click the "Demo Unauthorized Revert" button to deliberately show the faculty how regular users are blocked from griefing transactions.
+- **Claim Refund:** Once a transfer is challenged or passes its expiration timestamp, the original sender can click **Claim Refund** to return their ETH back to their wallet.
+
+---
+
+### 10. Multi-Sig Governance (`/governance`)
 - 2-of-3 Owner confirmations + 60s timelock.
 - How to unpause after an emergency pause:
   1. Switch to **#10 Owner 1**, click **Submit Unpause Proposal**.
   2. Switch to **#11 Owner 2**, click **Confirm Proposal**.
-  3. Click **Fast-Forward Timelock (+65s)** button.
-  4. Click **Execute Proposal** $\to$ Bridge is restored to active status!
+  3. Click **Fast-Forward Timelock (+65s)** button in Dev Tools.
+  4. Click **Execute Proposal** → Bridge is restored to active status!
 
 ---
 
-### 10. Attack Lab (`/attack-lab`)
-- Simulates 7 historic bridge hacks:
-  1. Ronin (insufficient guardian signatures)
-  2. Wormhole (forged digest signatures)
-  3. Nomad (replay attack)
-  4. Poly / DAO (reentrancy on redeem)
-  5. DAO (reentrancy on refund)
-  6. Direct Fallback ETH send
-  7. Invariant Limit Breach (> 10 ETH)
-- Demonstrates on-chain revert codes and safety intercepts in real time.
+### 11. Automated Penetration & Attack Lab (`/attack-lab`)
+- Simulates 10 real-world exploit vectors across all 3 security layers:
+  1. **A1: Invariant Limits Breach** (Certora Invariant, blocked by `PG:TX_LIMIT`)
+  2. **A2: Direct Fallback ETH Theft** (Plain receive revert, blocked by `PG:NO_DIRECT_ETH`)
+  3. **A3: Ronin Quorum Theft** (Fewer than 3 guardian signatures, blocked by `PG:BAD_SIGS`)
+  4. **A4: Wormhole Signature Forgery** (Random invalid ECDSA keys, blocked by `PG:BAD_SIGS`)
+  5. **A5: Wormhole Unsorted Keys / Malleability** (Simulated out-of-order keys, blocked by `PG:BAD_SIGS`)
+  6. **A6: Chainlink CCIP RMN Bypass** (Unblessed execution attempt, blocked by `PG:NOT_BLESSED`)
+  7. **A7: Nomad Replay Exploit** (Re-submitting processed transfer ID, blocked by `PG:NOT_PENDING`)
+  8. **A8: Poly Network Reentrancy on Redeem** (Recursive call, blocked by `ReentrancyGuard`)
+  9. **A9: Reentrancy Attack on Refund** (Recursive drain, blocked by `ReentrancyGuard`)
+  10. **A10: Unauthorized Challenge Griefing** (User challenge, blocked by `PG:NOT_CHALLENGER`)
+- Run single attacks individually with **"⚡ Run Single Attack"** or test all 10 at once with **"⚡ Run All 10 Penetration Scenarios"**.
+- Expand each card to view the exact line of Solidity defense code and a direct clickable link to where the defense event is visible in the UI.
 
 ---
 
-### 11. Gas Analytics (`/gas-analytics`)
+### 12. Gas Analytics (`/gas-analytics`)
 - Displays real gas consumption benchmarks:
-  - PayGuard Lifecycle: 867,613 gas
+  - PayGuard Full Security Lifecycle: 867,613 gas
   - Baseline Unprotected Bridge: 185,858 gas
-  - **Security Overhead:** $+366.81\%$ for 6 layers of verifiable enterprise protection.
+  - **Security Overhead:** +366.81% for 3 comprehensive security layers (Formal Invariants, Dual Consensus, Automated Post-Deployment Defense).
 

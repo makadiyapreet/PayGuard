@@ -106,12 +106,12 @@ export function RiskNetwork() {
       </div>
 
       {/* Select Transfer to Bless */}
-      <div className="bg-[#121826] border border-slate-800 rounded-2xl p-5">
-        <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2">
+      <div className="bg-white dark:bg-[#121826] border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+        <label className="text-xs font-bold text-slate-800 dark:text-slate-400 uppercase tracking-wider block mb-2">
           Select Pending Transfer to Bless:
         </label>
         {pendingTransfers.length === 0 ? (
-          <div className="text-xs text-slate-500 font-mono py-2">
+          <div className="text-xs text-slate-600 dark:text-slate-500 font-mono py-2 font-medium">
             No pending transfers awaiting blessing.
           </div>
         ) : (
@@ -120,14 +120,14 @@ export function RiskNetwork() {
               <button
                 key={t.id}
                 onClick={() => setSelectedId(t.id)}
-                className={`p-3 rounded-xl border text-left font-mono text-xs transition-all ${
+                className={`p-3.5 rounded-xl border text-left font-mono text-xs transition-all ${
                   selectedId === t.id
-                    ? "bg-purple-950/40 border-purple-500 text-white shadow-lg shadow-purple-500/10"
-                    : "bg-slate-900/60 border-slate-800 text-slate-400 hover:border-slate-700"
+                    ? "bg-purple-50 dark:bg-purple-950/40 border-purple-500 text-slate-900 dark:text-white shadow-sm ring-2 ring-purple-500/20"
+                    : "bg-slate-50 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-400 hover:border-slate-300"
                 }`}
               >
-                <div className="font-bold text-white mb-1">{shortAddress(t.id)}</div>
-                <div className="text-slate-400 text-[11px]">
+                <div className="font-bold text-slate-900 dark:text-white mb-1">{shortAddress(t.id)}</div>
+                <div className="text-slate-600 dark:text-slate-400 text-[11px] font-medium">
                   {t.netAmount} ETH &bull; Recipient: {shortAddress(t.recipient)}
                 </div>
               </button>
@@ -139,25 +139,25 @@ export function RiskNetwork() {
       {/* 2 RMN Nodes Verification Panel */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Node 1 */}
-        <div className="bg-[#121826] border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+        <div className="bg-white dark:bg-[#121826] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 flex flex-col justify-between shadow-sm">
           <div>
             <div className="flex justify-between items-center mb-3">
-              <span className="text-sm font-bold text-white flex items-center gap-2">
+              <span className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 <span>RMN Node 1 (R1)</span>
                 <span className="text-xs font-mono text-slate-500">Account #6</span>
               </span>
               <span
-                className={`text-xs font-mono font-bold px-2 py-0.5 rounded ${
+                className={`text-xs font-mono font-bold px-2.5 py-1 rounded-full shadow-sm ${
                   blessStatus.r1
-                    ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30"
-                    : "bg-slate-800 text-slate-400"
+                    ? "bg-emerald-100 text-emerald-950 dark:bg-emerald-500/15 dark:text-emerald-300 border border-emerald-300"
+                    : "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-400 border border-slate-200"
                 }`}
               >
                 {blessStatus.r1 ? "BLESSED ✔" : "AWAITING"}
               </span>
             </div>
 
-            <p className="text-xs text-slate-400 mb-4">
+            <p className="text-xs text-slate-600 dark:text-slate-400 mb-4 font-medium leading-relaxed">
               Independently re-computes transfer approval digest from raw event parameters before casting vote.
             </p>
           </div>
@@ -165,32 +165,32 @@ export function RiskNetwork() {
           <button
             onClick={() => handleBless(6)}
             disabled={blessStatus.r1 || !selectedId}
-            className="w-full py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 disabled:opacity-40 text-white font-bold text-xs transition-colors shadow-lg shadow-purple-500/20"
+            className="w-full py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 disabled:opacity-40 text-white font-bold text-xs transition-colors shadow-md shadow-purple-500/20"
           >
             {blessStatus.r1 ? "Node 1 Already Blessed" : "Verify & Bless as Node 1"}
           </button>
         </div>
 
         {/* Node 2 */}
-        <div className="bg-[#121826] border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+        <div className="bg-white dark:bg-[#121826] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 flex flex-col justify-between shadow-sm">
           <div>
             <div className="flex justify-between items-center mb-3">
-              <span className="text-sm font-bold text-white flex items-center gap-2">
+              <span className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 <span>RMN Node 2 (R2)</span>
                 <span className="text-xs font-mono text-slate-500">Account #7</span>
               </span>
               <span
-                className={`text-xs font-mono font-bold px-2 py-0.5 rounded ${
+                className={`text-xs font-mono font-bold px-2.5 py-1 rounded-full shadow-sm ${
                   blessStatus.r2
-                    ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30"
-                    : "bg-slate-800 text-slate-400"
+                    ? "bg-emerald-100 text-emerald-950 dark:bg-emerald-500/15 dark:text-emerald-300 border border-emerald-300"
+                    : "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-400 border border-slate-200"
                 }`}
               >
                 {blessStatus.r2 ? "BLESSED ✔" : "AWAITING"}
               </span>
             </div>
 
-            <p className="text-xs text-slate-400 mb-4">
+            <p className="text-xs text-slate-600 dark:text-slate-400 mb-4 font-medium leading-relaxed">
               Dual consensus requirement: Even if all 5 guardians sign, execution reverts without both RMN blessings.
             </p>
           </div>
@@ -198,7 +198,7 @@ export function RiskNetwork() {
           <button
             onClick={() => handleBless(7)}
             disabled={blessStatus.r2 || !selectedId}
-            className="w-full py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 disabled:opacity-40 text-white font-bold text-xs transition-colors shadow-lg shadow-purple-500/20"
+            className="w-full py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 disabled:opacity-40 text-white font-bold text-xs transition-colors shadow-md shadow-purple-500/20"
           >
             {blessStatus.r2 ? "Node 2 Already Blessed" : "Verify & Bless as Node 2"}
           </button>
@@ -206,15 +206,15 @@ export function RiskNetwork() {
       </div>
 
       {/* Emergency Cursing Panel */}
-      <div className="bg-[#121826] border border-purple-500/30 rounded-2xl p-6">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white dark:bg-[#121826] border border-purple-200 dark:border-purple-500/30 rounded-2xl p-6 shadow-sm">
+        <div className="flex justify-between items-center mb-4 flex-wrap gap-2">
           <div className="flex items-center gap-2">
-            <ShieldAlert className="w-5 h-5 text-purple-400" />
-            <h3 className="text-sm font-bold text-white uppercase tracking-wider">
+            <ShieldAlert className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">
               Emergency Curse Control (Autonomous Bridge Halt)
             </h3>
           </div>
-          <span className="text-xs font-mono text-purple-300">
+          <span className="text-xs font-mono text-purple-700 dark:text-purple-300 font-bold bg-purple-50 dark:bg-purple-950/40 px-2.5 py-1 rounded-lg border border-purple-200">
             Current Curse Votes: <strong>{curseVotes} / 2 Quorum</strong>
           </span>
         </div>

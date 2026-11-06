@@ -58,11 +58,11 @@ export function GuidedDemo() {
   return (
     <div className="p-6 max-w-7xl mx-auto flex flex-col gap-6">
       <div>
-        <h2 className="text-2xl font-extrabold text-white tracking-tight flex items-center gap-2.5">
+        <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
           <span>8-Step Guided System Demonstration</span>
           <LayerBadge layer="CORE" />
         </h2>
-        <p className="text-xs text-slate-400 mt-1">
+        <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 font-medium">
           Structured 5-minute lab presentation walkthrough. Demonstrates all 6 researched solutions in sequence.
         </p>
       </div>
@@ -71,22 +71,22 @@ export function GuidedDemo() {
         {DEMO_STEPS.map((s) => (
           <div
             key={s.step}
-            className="bg-[#121826] border border-slate-800 rounded-2xl p-5 flex flex-col justify-between"
+            className="bg-white dark:bg-[#121826] border border-slate-200 dark:border-slate-800 rounded-2xl p-5 flex flex-col justify-between shadow-sm"
           >
             <div>
               <div className="flex justify-between items-center mb-2">
-                <span className="text-xs font-bold text-blue-400 font-mono">
+                <span className="text-xs font-bold text-blue-700 dark:text-blue-400 font-mono">
                   STEP {s.step} OF 8
                 </span>
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               </div>
-              <h3 className="text-sm font-bold text-white mb-1">{s.title}</h3>
-              <p className="text-xs text-slate-400 font-sans leading-relaxed">{s.desc}</p>
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-1.5">{s.title}</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 font-medium leading-relaxed">{s.desc}</p>
             </div>
 
             <Link
               to={s.link}
-              className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-blue-400 hover:text-blue-300 transition-colors"
+              className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 dark:text-blue-400 hover:text-blue-600 transition-colors"
             >
               <span>Go to Panel</span>
               <ArrowRight className="w-3.5 h-3.5" />

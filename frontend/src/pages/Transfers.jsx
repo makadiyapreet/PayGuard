@@ -292,37 +292,37 @@ export function Transfers() {
 
               {/* Real-time Pre-Execution Gate Preview */}
               {preview && (
-                <div className={`p-3.5 rounded-xl border text-xs font-mono space-y-1.5 ${
+                <div className={`p-3.5 rounded-xl border text-xs font-mono space-y-1.5 shadow-sm ${
                   preview.ok
-                    ? "bg-slate-900/60 border-slate-800 text-slate-300"
-                    : "bg-rose-950/20 border-rose-500/30 text-rose-300"
+                    ? "bg-emerald-50 dark:bg-emerald-950/20 border-emerald-300 dark:border-emerald-500/30 text-emerald-950 dark:text-emerald-300"
+                    : "bg-rose-50 dark:bg-rose-950/20 border-rose-300 dark:border-rose-500/30 text-rose-950 dark:text-rose-300"
                 }`}>
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-400">Pre-Execution Gate:</span>
+                    <span className="font-bold text-slate-700 dark:text-slate-400">Pre-Execution Gate:</span>
                     <span className="font-bold flex items-center gap-1">
                       {preview.ok ? (
-                        <span className="text-emerald-400 flex items-center gap-1">
+                        <span className="text-emerald-700 dark:text-emerald-400 flex items-center gap-1 font-bold">
                           <CheckCircle2 className="w-3.5 h-3.5" /> All Checks Passed
                         </span>
                       ) : (
-                        <span className="text-rose-400 flex items-center gap-1">
+                        <span className="text-rose-700 dark:text-rose-400 flex items-center gap-1 font-bold">
                           <XCircle className="w-3.5 h-3.5" /> Blocked ({preview.reason})
                         </span>
                       )}
                     </span>
                   </div>
 
-                  <div className="flex justify-between">
-                    <span className="text-slate-500">Protocol Fee (to Forta pool):</span>
-                    <span>{preview.fee} ETH</span>
+                  <div className="flex justify-between text-slate-800 dark:text-slate-300">
+                    <span className="text-slate-600 dark:text-slate-400">Protocol Fee (to Forta pool):</span>
+                    <span className="font-semibold">{preview.fee} ETH</span>
                   </div>
-                  <div className="flex justify-between font-bold text-white">
-                    <span className="text-slate-400">Net Mintable pgETH:</span>
-                    <span className="text-blue-400">{preview.net} pgETH</span>
+                  <div className="flex justify-between font-bold text-slate-900 dark:text-white">
+                    <span className="text-slate-700 dark:text-slate-400">Net Mintable pgETH:</span>
+                    <span className="text-blue-700 dark:text-blue-400 font-extrabold">{preview.net} pgETH</span>
                   </div>
 
                   {preview.isLarge && (
-                    <div className="pt-1.5 border-t border-slate-800 text-amber-300 flex items-center gap-1 text-[11px]">
+                    <div className="pt-1.5 border-t border-amber-300/60 dark:border-slate-800 text-amber-900 dark:text-amber-300 flex items-center gap-1 text-[11px] font-bold">
                       <Clock className="w-3.5 h-3.5" />
                       <span>Large Transfer (&ge; 5 ETH): 1-hour challenge delay will apply.</span>
                     </div>
@@ -342,7 +342,7 @@ export function Transfers() {
             </button>
             <button
               onClick={() => handleDeposit(true)}
-              className="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition-colors"
+              className="px-3.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700 text-xs font-bold transition-colors shadow-sm"
               title="Force Send bypasses gas estimation to demonstrate real revert on-chain"
             >
               Force Send
@@ -534,7 +534,7 @@ export function Transfers() {
             <div className="pt-6 border-t border-slate-800">
               <button
                 onClick={() => setSelectedTransfer(null)}
-                className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs transition-colors"
+                className="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-300 font-bold text-xs border border-slate-300 dark:border-slate-700 transition-colors shadow-sm"
               >
                 Close Inspector
               </button>

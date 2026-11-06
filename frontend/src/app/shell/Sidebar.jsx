@@ -88,15 +88,15 @@ export function Sidebar() {
               key={item.to}
               to={item.to}
               className={({ isActive }) =>
-                `flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
+                `flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs transition-all ${
                   isActive
-                    ? "bg-blue-50 text-blue-700 border border-blue-200 font-bold dark:bg-blue-600/15 dark:text-blue-400 dark:border-blue-500/30"
-                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                    ? "bg-blue-50 text-blue-700 border border-blue-300 font-bold dark:bg-blue-600/20 dark:text-blue-300 dark:border-blue-500/40 shadow-sm"
+                    : "text-slate-800 dark:text-slate-300 font-semibold hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
                 }`
               }
             >
               <div className="flex items-center gap-2.5">
-                <item.icon className="w-4 h-4" />
+                <item.icon className="w-4 h-4 shrink-0" />
                 <span>{item.label}</span>
               </div>
               {item.layer && <LayerBadge layer={item.layer} />}
@@ -107,8 +107,8 @@ export function Sidebar() {
         {/* Layer-grouped items */}
         {NAV_ITEMS.slice(2).map((group, idx) => (
           <div key={idx} className="flex flex-col gap-1">
-            <div className="flex items-center justify-between px-3 mb-1">
-              <span className="text-[10px] uppercase font-bold tracking-wider text-slate-500">
+            <div className="flex items-center justify-between px-3.5 mb-1.5 pt-1">
+              <span className="text-[11px] uppercase font-extrabold tracking-wider text-slate-700 dark:text-slate-400">
                 {group.header}
               </span>
               {group.layer && <LayerBadge layer={group.layer} />}
@@ -119,14 +119,14 @@ export function Sidebar() {
                 key={item.to}
                 to={item.to}
                 className={({ isActive }) =>
-                  `flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium transition-all ${
+                  `flex items-center gap-2.5 px-3.5 py-2 rounded-xl text-xs transition-all ${
                     isActive
-                      ? "bg-slate-100 text-blue-700 font-semibold border border-slate-200 dark:bg-slate-800 dark:text-white dark:border-slate-700"
-                      : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800/40"
+                      ? "bg-blue-50 text-blue-700 border border-blue-300 font-bold dark:bg-blue-600/20 dark:text-blue-300 dark:border-blue-500/40 shadow-sm"
+                      : "text-slate-800 dark:text-slate-300 font-semibold hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
                   }`
                 }
               >
-                <item.icon className="w-4 h-4 shrink-0" />
+                <item.icon className="w-4 h-4 shrink-0 text-slate-500 dark:text-slate-400" />
                 <span className="truncate">{item.label}</span>
               </NavLink>
             ))}

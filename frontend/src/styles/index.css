@@ -83,15 +83,24 @@ html.light .bg-\[\#0d121f\] {
   border-color: #e2e8f0 !important;
 }
 
+html.light aside a {
+  color: #334155 !important;
+  font-weight: 600 !important;
+}
+
+html.light aside a:hover {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
 /* Active NavLink in Sidebar */
+html.light aside a.active,
+html.light aside a.bg-blue-50,
 html.light aside a.bg-blue-600\/15 {
   background-color: #eff6ff !important;
   border-color: #bfdbfe !important;
   color: #1d4ed8 !important;
-}
-html.light aside a:hover:not(.bg-blue-600\/15) {
-  background-color: #f8fafc !important;
-  color: #0f172a !important;
+  font-weight: 700 !important;
 }
 
 /* Primary Outer Cards and Containers */
@@ -102,7 +111,10 @@ html.light .bg-slate-900\/60,
 html.light .bg-slate-900\/80,
 html.light .bg-slate-900\/40,
 html.light .bg-slate-800,
-html.light .bg-slate-800\/60 {
+html.light .bg-slate-800\/60,
+html.light .bg-slate-800\/70,
+html.light .bg-slate-800\/80,
+html.light .bg-slate-800\/90 {
   background-color: #ffffff !important;
   border-color: #e2e8f0 !important;
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.04), 0 1px 2px -1px rgb(0 0 0 / 0.02);
@@ -140,97 +152,138 @@ html.light h1,
 html.light h2,
 html.light h3,
 html.light h4,
-html.light .text-white,
-html.light .text-slate-100,
-html.light .text-slate-200 {
+html.light h5,
+html.light h6,
+html.light p.text-white,
+html.light div.text-white:not(button *):not([class*="bg-blue-600"] *):not([class*="bg-indigo-600"] *):not([class*="bg-rose-600"] *):not([class*="bg-emerald-600"] *):not([class*="bg-amber-600"] *),
+html.light span.text-white:not(button *):not([class*="bg-blue-600"] *):not([class*="bg-indigo-600"] *):not([class*="bg-rose-600"] *):not([class*="bg-emerald-600"] *):not([class*="bg-amber-600"] *),
+html.light .text-slate-100:not(button *):not([class*="bg-blue-600"] *):not([class*="bg-indigo-600"] *):not([class*="bg-rose-600"] *):not([class*="bg-emerald-600"] *),
+html.light .text-slate-200:not(button *):not([class*="bg-blue-600"] *):not([class*="bg-indigo-600"] *):not([class*="bg-rose-600"] *):not([class*="bg-emerald-600"] *) {
   color: #0f172a !important; /* Crisp Slate 900 */
 }
 
 html.light .text-slate-300,
 html.light .text-slate-400 {
-  color: #334155 !important; /* High contrast Slate 700 */
+  color: #1e293b !important; /* High contrast Slate 800 */
 }
 
 html.light .text-slate-500 {
-  color: #64748b !important; /* Slate 500 */
+  color: #475569 !important; /* Readable Slate 600 */
 }
 
 html.light .text-slate-600 {
-  color: #cbd5e1 !important; /* Dividers */
+  color: #334155 !important; /* Readable Slate 700 */
 }
 
-/* Accent Text Colors in Light Mode (Deep & High Contrast) */
-html.light .text-blue-400 {
+html.light .text-slate-700,
+html.light .text-slate-800 {
+  color: #1e293b !important;
+}
+
+/* Accent Text Colors in Light Mode (Deep & High Contrast - Never Neon/Faded) */
+html.light .text-blue-300,
+html.light .text-blue-400,
+html.light .text-blue-500 {
   color: #1d4ed8 !important; /* Blue 700 */
 }
+html.light .text-purple-300,
 html.light .text-purple-400,
 html.light .text-violet-400 {
   color: #4f46e5 !important; /* Royal Indigo 600 */
 }
-html.light .text-emerald-400 {
-  color: #047857 !important; /* Emerald 700 */
+html.light .text-emerald-300,
+html.light .text-emerald-400,
+html.light .text-emerald-500 {
+  color: #065f46 !important; /* Deep Forest Emerald 800 */
 }
-html.light .text-amber-400 {
-  color: #b45309 !important; /* Amber 700 */
+html.light .text-amber-300,
+html.light .text-yellow-300,
+html.light .text-yellow-400,
+html.light .text-amber-400,
+html.light .text-amber-500,
+html.light .text-amber-600 {
+  color: #78350f !important; /* Deep Dark Amber 900 - Never Faded Neon Yellow */
 }
-html.light .text-rose-400 {
-  color: #b91c1c !important; /* Red 700 */
+html.light .text-orange-300,
+html.light .text-orange-400 {
+  color: #9a3412 !important; /* Deep Rust Orange 800 */
+}
+html.light .text-rose-300,
+html.light .text-rose-400,
+html.light .text-rose-500 {
+  color: #991b1b !important; /* Deep Crimson Red 800 */
 }
 html.light .text-cyan-400 {
   color: #0e7490 !important; /* Cyan 700 */
 }
 
-/* Tinted Status Boxes in Light Mode (Clean pastel fills, no muddy brown/lavender) */
+/* Tinted Status & Alert Boxes in Light Mode (Clean, High Contrast, Deep Text) */
+html.light .bg-purple-50,
+html.light [class*="bg-purple-50"],
+html.light [class*="bg-purple-100"],
 html.light [class*="bg-purple-950"],
 html.light [class*="bg-purple-900"],
 html.light [class*="bg-purple-500/10"],
 html.light [class*="bg-purple-500/20"] {
   background-color: #f5f3ff !important;
-  border-color: #ddd6fe !important;
+  border-color: #c4b5fd !important;
   color: #4338ca !important;
 }
 
+html.light .bg-blue-50,
+html.light [class*="bg-blue-50"],
+html.light [class*="bg-blue-100"],
 html.light [class*="bg-blue-950"],
 html.light [class*="bg-blue-900"],
 html.light [class*="bg-blue-500/10"],
 html.light [class*="bg-blue-600/10"],
 html.light [class*="bg-blue-600/20"] {
   background-color: #eff6ff !important;
-  border-color: #bfdbfe !important;
-  color: #1e40af !important;
+  border-color: #93c5fd !important;
+  color: #1e3a8a !important;
 }
 
+html.light .bg-emerald-50,
+html.light [class*="bg-emerald-50"],
+html.light [class*="bg-emerald-100"],
 html.light [class*="bg-emerald-950"],
 html.light [class*="bg-emerald-900"],
 html.light [class*="bg-emerald-500/10"],
 html.light [class*="bg-emerald-500/20"] {
   background-color: #ecfdf5 !important;
-  border-color: #a7f3d0 !important;
-  color: #065f46 !important;
+  border-color: #6ee7b7 !important;
+  color: #064e3b !important;
 }
 
+html.light .bg-rose-50,
+html.light [class*="bg-rose-50"],
+html.light [class*="bg-rose-100"],
 html.light [class*="bg-rose-950"],
 html.light [class*="bg-rose-900"],
 html.light [class*="bg-rose-500/10"],
 html.light [class*="bg-rose-500/20"],
 html.light [class*="bg-rose-600/20"] {
   background-color: #fef2f2 !important;
-  border-color: #fecdd3 !important;
-  color: #991b1b !important;
+  border-color: #fca5a5 !important;
+  color: #7f1d1d !important;
 }
 
+html.light .bg-amber-50,
+html.light [class*="bg-amber-50"],
+html.light [class*="bg-amber-100"],
 html.light [class*="bg-amber-950"],
 html.light [class*="bg-amber-900"],
 html.light [class*="bg-amber-500/10"],
 html.light [class*="bg-amber-500/20"],
 html.light [class*="bg-amber-600/20"] {
   background-color: #fffbeb !important;
-  border-color: #fde68a !important;
-  color: #92400e !important;
+  border-color: #fcd34d !important;
+  color: #78350f !important;
 }
 
 /* Buttons in Light Mode */
-html.light .bg-blue-600 {
+html.light .bg-blue-600,
+html.light .bg-blue-700 {
   background-color: #2563eb !important;
   color: #ffffff !important;
 }
@@ -239,11 +292,14 @@ html.light .hover\:bg-blue-500:hover {
   background-color: #1d4ed8 !important;
 }
 
+html.light .bg-indigo-600,
 html.light .bg-purple-600 {
   background-color: #4f46e5 !important; /* Clean Royal Indigo */
   color: #ffffff !important;
 }
+html.light .bg-indigo-600:hover,
 html.light .bg-purple-600:hover,
+html.light .hover\:bg-indigo-500:hover,
 html.light .hover\:bg-purple-500:hover {
   background-color: #4338ca !important;
 }
@@ -257,13 +313,36 @@ html.light .hover\:bg-emerald-500:hover {
   background-color: #047857 !important;
 }
 
-html.light .bg-rose-600 {
+html.light .bg-rose-600,
+html.light .bg-rose-700 {
   background-color: #dc2626 !important;
   color: #ffffff !important;
 }
 html.light .bg-rose-600:hover,
 html.light .hover\:bg-rose-500:hover {
   background-color: #b91c1c !important;
+}
+
+html.light .bg-amber-600,
+html.light .bg-amber-700 {
+  background-color: #d97706 !important;
+  color: #ffffff !important;
+}
+
+/* Ensure text & icons inside all solid action buttons are pure white */
+html.light button.bg-blue-600 *,
+html.light button.bg-blue-700 *,
+html.light button.bg-indigo-600 *,
+html.light button.bg-purple-600 *,
+html.light button.bg-emerald-600 *,
+html.light button.bg-rose-600 *,
+html.light button.bg-amber-600 *,
+html.light button.bg-amber-700 *,
+html.light a.bg-blue-600 *,
+html.light a.bg-indigo-600 *,
+html.light a.bg-rose-600 *,
+html.light a.bg-amber-700 * {
+  color: #ffffff !important;
 }
 
 html.light .bg-gradient-to-r.from-blue-600.to-purple-600,

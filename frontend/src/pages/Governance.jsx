@@ -101,7 +101,7 @@ export function Governance() {
         <div className="flex items-center gap-2">
           <button
             onClick={handleFastForwardTimelock}
-            className="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-300 font-bold text-xs flex items-center gap-1.5 transition-colors border border-amber-500/30"
+            className="px-3.5 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-amber-900 dark:text-amber-300 font-bold text-xs flex items-center gap-1.5 transition-colors border border-amber-300 dark:border-amber-500/30 shadow-sm"
           >
             <FastForward className="w-3.5 h-3.5" />
             <span>Fast-Forward Timelock (+65s)</span>
@@ -110,33 +110,33 @@ export function Governance() {
       </div>
 
       {/* Quick Action: Unpause Bridge */}
-      <div className="bg-[#121826] border border-slate-800 rounded-2xl p-6">
-        <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-2">
+      <div className="bg-white dark:bg-[#121826] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
+        <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-2">
           Create Governance Proposal (Acting as Owner O1–O3)
         </h3>
-        <p className="text-xs text-slate-400 mb-4">
+        <p className="text-xs text-slate-600 dark:text-slate-400 mb-4 font-medium">
           All administrative functions (unpause, uncurse, setLimits, addGuardian, resolveAlert) require an executed proposal.
         </p>
 
         <button
           onClick={handleCreateProposal}
-          className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-colors shadow-lg shadow-blue-500/20"
+          className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition-colors shadow-md shadow-blue-500/20"
         >
           Submit "Unpause PaymentBridge" Proposal
         </button>
       </div>
 
       {/* Proposals List */}
-      <div className="bg-[#121826] border border-slate-800 rounded-2xl p-6">
-        <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center justify-between">
+      <div className="bg-white dark:bg-[#121826] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
+        <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4 flex items-center justify-between">
           <span>Governance Proposal Board</span>
-          <span className="text-xs bg-slate-800 text-slate-400 font-mono px-2 py-0.5 rounded">
+          <span className="text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono font-bold px-2.5 py-0.5 rounded">
             {proposals.length} proposals
           </span>
         </h3>
 
         {proposals.length === 0 ? (
-          <div className="text-xs text-slate-500 font-mono py-8 text-center">
+          <div className="text-xs text-slate-600 dark:text-slate-400 font-mono py-8 text-center font-medium">
             No proposals found. Submit an unpause proposal above.
           </div>
         ) : (
@@ -144,7 +144,7 @@ export function Governance() {
             {proposals.map((p) => (
               <div
                 key={p.id}
-                className="p-4 bg-slate-900/60 border border-slate-800 rounded-xl flex items-center justify-between text-xs font-mono"
+                className="p-4 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl flex items-center justify-between text-xs font-mono shadow-sm"
               >
                 <div>
                   <div className="flex items-center gap-2 mb-1">
@@ -170,7 +170,7 @@ export function Governance() {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => handleConfirm(p.id)}
-                      className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs"
+                      className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs border border-slate-300 dark:border-slate-700 shadow-sm transition-colors"
                     >
                       Confirm (as Owner)
                     </button>

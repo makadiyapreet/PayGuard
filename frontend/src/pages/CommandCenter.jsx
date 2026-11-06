@@ -3,6 +3,7 @@ import { useChainStore } from "../store/chainStore.js";
 import { useIndexerStore } from "../store/indexerStore.js";
 import { useAccountStore } from "../store/accountStore.js";
 import { LayerBadge } from "../components/LayerBadge.jsx";
+import { EventBadge } from "../components/EventBadge.jsx";
 import { StatusLight } from "../components/StatusLight.jsx";
 import { RiskGauge } from "../components/RiskGauge.jsx";
 import { EthAmount } from "../components/EthAmount.jsx";
@@ -355,9 +356,7 @@ export function CommandCenter() {
                 <div className="flex items-center gap-3">
                   <span className="font-mono text-slate-500 text-[11px]">#{ev.blockNumber}</span>
                   <span className="font-mono text-blue-700 dark:text-blue-300 font-semibold">{ev.contractName}</span>
-                  <span className="font-semibold text-slate-800 dark:text-white bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-[11px]">
-                    {ev.event}
-                  </span>
+                  <EventBadge event={ev.event} />
                 </div>
                 <span className="font-mono text-slate-500 text-[11px]">
                   Tx: {ev.transactionHash?.slice(0, 8)}...

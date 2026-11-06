@@ -12,30 +12,30 @@ export function RiskGauge({ score = 100 }) {
     score >= 80 ? BANDS[0] : score >= 50 ? BANDS[1] : score >= 20 ? BANDS[2] : BANDS[3];
 
   return (
-    <div className="flex flex-col gap-2 p-4 rounded-xl bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 shadow-sm">
+    <div className="flex flex-col gap-3 p-5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 shadow-sm">
       <div className="flex justify-between items-center">
-        <span className="text-xs uppercase font-semibold tracking-wider text-slate-600 dark:text-slate-400">
+        <span className="text-xs uppercase font-extrabold tracking-wider text-slate-800 dark:text-slate-300">
           CertiK Skynet Risk Score
         </span>
-        <span className={`text-xs font-bold px-2 py-0.5 rounded border border-current ${currentBand.color}`}>
+        <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full border border-current shadow-sm ${currentBand.color}`}>
           {currentBand.name} ({currentBand.mult} Limit)
         </span>
       </div>
 
       <div className="flex items-baseline gap-2">
-        <span className="text-3xl font-extrabold font-mono tracking-tight text-slate-900 dark:text-white">{score}</span>
-        <span className="text-slate-500 text-sm font-mono">/ 100</span>
+        <span className="text-3xl font-black font-mono tracking-tight text-slate-900 dark:text-white">{score}</span>
+        <span className="text-slate-600 dark:text-slate-400 text-sm font-mono font-bold">/ 100</span>
       </div>
 
       {/* Segmented bar */}
-      <div className="w-full bg-slate-100 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden flex border border-slate-200 dark:border-slate-700">
+      <div className="w-full bg-slate-100 dark:bg-slate-800 h-3 rounded-full overflow-hidden flex border border-slate-200 dark:border-slate-700">
         <div
           className={`h-full transition-all duration-500 ${currentBand.bg}`}
           style={{ width: `${Math.max(2, score)}%` }}
         />
       </div>
 
-      <div className="flex justify-between text-[10px] text-slate-500 font-mono mt-1">
+      <div className="flex justify-between text-[11px] text-slate-700 dark:text-slate-400 font-mono font-bold mt-1">
         <span>0 (Critical)</span>
         <span>20 (High)</span>
         <span>50 (Medium)</span>

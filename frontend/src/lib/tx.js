@@ -45,6 +45,29 @@ export async function sendTx({
     } catch (staticErr) {
       detailedError = staticErr;
     }
+
+    // Inspect preview functions on PaymentBridge for accurate revert explanations
+    if (contractName === "PaymentBridge") {
+      try {
+        if (method === "execute" && args.length >= 2) {
+          const preview = await contract.previewExecute(args[0], args[1]);
+          if (!preview[0] && preview[2]) {
+            detailedError = preview[2];
+          }
+        } else if (method === "deposit" && args.length >= 1) {
+          const preview = await contract.previewDeposit(actorAddress, args[0], valWei);
+          if (!preview[0] && preview[2]) {
+            detailedError = preview[2];
+          }
+        } else if (method === "refund" && args.length >= 1) {
+          const preview = await contract.previewRefund(args[0]);
+          if (!preview[0] && preview[2]) {
+            detailedError = preview[2];
+          }
+        }
+      } catch (_) {}
+    }
+
     revertInfo = decodeRevertReason(detailedError);
     console.warn(`[tx-dryrun] ${contractName}.${method} reverted:`, revertInfo);
 

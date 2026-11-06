@@ -171,8 +171,19 @@ async function main() {
   if (isPausedAfter) throw new Error("Bridge should be unpaused now");
 
   // 10. Large Transfer Delay Window
-  console.log("\n10. Testing Large Transfer Delay Window (&ge; 5 ETH)...");
-  const largeDepTx = await bridge.connect(user).deposit(userAddr, { value: ethers.parseEther("6.0"), gasLimit: 800000n });
+  console.log("\n10. Testing Large Transfer Delay Window (>= 5 ETH)...");
+  // Fast-forward 24h to refresh daily limits and allow risk score recovery
+  await provider.send("evm_increaseTime", [86400]);
+  await provider.send("evm_mine", []);
+  try {
+    const recTx = await riskScore.connect(user).recover();
+    await recTx.wait();
+  } catch (_) {}
+
+  // Use Account #14 so user daily volume limit is fresh
+  const user14 = await getTxSigner(14);
+  const user14Addr = await user14.getAddress();
+  const largeDepTx = await bridge.connect(user14).deposit(user14Addr, { value: ethers.parseEther("6.0"), gasLimit: 800000n });
   await largeDepTx.wait();
   const totalTransfersAfter = await bridge.transferTotal();
   const largeTransferId = await bridge.transferIdAt(totalTransfersAfter - 1n);

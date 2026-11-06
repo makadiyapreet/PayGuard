@@ -81,53 +81,53 @@ export function DetectionNetwork() {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-[#121826] border border-slate-800 rounded-2xl p-5">
-          <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+        <div className="bg-white dark:bg-[#121826] border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+          <span className="text-xs font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider">
             Available Reward Pool
           </span>
-          <div className="text-2xl font-bold font-mono text-emerald-400 mt-2">
+          <div className="text-2xl font-black font-mono text-emerald-700 dark:text-emerald-400 mt-2">
             {rewardPool} ETH
           </div>
-          <div className="text-xs text-slate-500 mt-1">
+          <div className="text-xs text-slate-600 dark:text-slate-400 mt-1 font-medium">
             Funded by 0.10% bridge fees + slashed stakes
           </div>
         </div>
 
-        <div className="bg-[#121826] border border-slate-800 rounded-2xl p-5">
-          <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+        <div className="bg-white dark:bg-[#121826] border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+          <span className="text-xs font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider">
             Registered Bots
           </span>
-          <div className="text-2xl font-bold font-mono text-white mt-2">
+          <div className="text-2xl font-black font-mono text-slate-900 dark:text-white mt-2">
             {bots.length}
           </div>
-          <div className="text-xs text-slate-500 mt-1">
+          <div className="text-xs text-slate-600 dark:text-slate-400 mt-1 font-medium">
             Minimum Stake: 1.0 ETH &bull; 24h unbond delay
           </div>
         </div>
 
-        <div className="bg-[#121826] border border-slate-800 rounded-2xl p-5">
-          <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+        <div className="bg-white dark:bg-[#121826] border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+          <span className="text-xs font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider">
             Incentive Alignment
           </span>
-          <div className="text-2xl font-bold font-mono text-purple-400 mt-2">
+          <div className="text-2xl font-black font-mono text-indigo-700 dark:text-purple-400 mt-2">
             +10% / -50%
           </div>
-          <div className="text-xs text-slate-500 mt-1">
+          <div className="text-xs text-slate-600 dark:text-slate-400 mt-1 font-medium">
             Valid reward: 10% pool &bull; False slash: 50% stake
           </div>
         </div>
       </div>
 
       {/* Raise Alert Card */}
-      <div className="bg-[#121826] border border-slate-800 rounded-2xl p-6">
-        <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
-          <ShieldAlert className="w-4 h-4 text-emerald-400" />
+      <div className="bg-white dark:bg-[#121826] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
+        <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+          <ShieldAlert className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
           <span>Raise Security Alert (Acting Bot)</span>
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label className="text-xs font-semibold text-slate-400 block mb-1">
+            <label className="text-xs font-bold text-slate-700 dark:text-slate-400 block mb-1.5">
               Target Transfer ID (32 bytes)
             </label>
             <input
@@ -135,18 +135,18 @@ export function DetectionNetwork() {
               value={transferId}
               onChange={(e) => setTransferId(e.target.value)}
               placeholder="0x..."
-              className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white font-mono outline-none focus:border-emerald-500"
+              className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 dark:text-white font-mono outline-none focus:border-emerald-500 shadow-sm"
             />
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-slate-400 block mb-1">
+            <label className="text-xs font-bold text-slate-700 dark:text-slate-400 block mb-1.5">
               Severity Level
             </label>
             <select
               value={severity}
               onChange={(e) => setSeverity(Number(e.target.value))}
-              className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white font-mono outline-none"
+              className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 dark:text-white font-mono outline-none focus:border-emerald-500 shadow-sm"
             >
               <option value={1}>Severity 1: Low (-10 Risk pts)</option>
               <option value={2}>Severity 2: Medium (-20 Risk pts)</option>
@@ -155,21 +155,21 @@ export function DetectionNetwork() {
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-slate-400 block mb-1">
+            <label className="text-xs font-bold text-slate-700 dark:text-slate-400 block mb-1.5">
               Evidence String
             </label>
             <input
               type="text"
               value={evidence}
               onChange={(e) => setEvidence(e.target.value)}
-              className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white font-mono outline-none focus:border-emerald-500"
+              className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 dark:text-white font-mono outline-none focus:border-emerald-500 shadow-sm"
             />
           </div>
         </div>
 
         <button
           onClick={handleRaiseAlert}
-          className="mt-4 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-colors"
+          className="mt-5 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-colors shadow-md shadow-emerald-500/20"
         >
           Submit Alert to Network
         </button>

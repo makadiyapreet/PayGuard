@@ -554,10 +554,10 @@ export function AttackLab() {
                   <button
                     onClick={() => handleRunSingleAttack(a)}
                     disabled={isCurrentlyRunning || runningAll}
-                    className="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all disabled:opacity-50"
+                    className="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all disabled:opacity-50"
                   >
-                    <Zap className="w-3.5 h-3.5 fill-white text-white" />
-                    <span>{isCurrentlyRunning ? "Testing Exploit..." : "⚡ Run Single Attack"}</span>
+                    <Zap className="w-3.5 h-3.5 fill-white text-white shrink-0" />
+                    <span>{isCurrentlyRunning ? "Testing Exploit..." : "Run Single Attack"}</span>
                   </button>
 
                   <button
@@ -573,31 +573,31 @@ export function AttackLab() {
               {/* Detailed Live Attack Inspector & Telemetry Drawer */}
               {isExpanded && (
                 <div className="px-5 pb-5 pt-2 border-t border-slate-100 dark:border-slate-800/80 bg-slate-50/70 dark:bg-slate-900/40 flex flex-col gap-3 text-xs">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mt-2">
                     {/* Security Code Defense Specification */}
-                    <div className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
-                      <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider block mb-1">
+                    <div className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm min-w-0">
+                      <span className="text-[11px] uppercase font-bold text-slate-700 dark:text-slate-400 tracking-wider block mb-1">
                         Solidity Defense Hook & Invariant Check:
                       </span>
-                      <code className="text-slate-800 dark:text-slate-200 font-mono text-[11px] block bg-slate-50 dark:bg-slate-950 p-2 rounded border border-slate-200 dark:border-slate-800 select-all">
+                      <code className="text-slate-900 dark:text-slate-200 font-mono text-[11px] block bg-slate-50 dark:bg-slate-950 p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 select-all break-all whitespace-pre-wrap">
                         {a.solidityCheck}
                       </code>
                     </div>
 
                     {/* Where It Is Visible In The Dashboard */}
-                    <div className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                    <div className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between min-w-0">
                       <div>
-                        <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider block mb-1">
+                        <span className="text-[11px] uppercase font-bold text-slate-700 dark:text-slate-400 tracking-wider block mb-1">
                           Where This Attack Outcome Is Visible in Dashboard:
                         </span>
-                        <p className="text-slate-700 dark:text-slate-300 text-[11px] font-medium leading-relaxed">
+                        <p className="text-slate-900 dark:text-slate-200 text-xs font-semibold leading-relaxed">
                           {a.location}
                         </p>
                       </div>
 
                       <Link
                         to={a.locationPath}
-                        className="mt-2 text-indigo-600 dark:text-blue-400 font-bold hover:underline inline-flex items-center gap-1 text-[11px]"
+                        className="mt-2 text-blue-600 dark:text-blue-400 font-bold hover:underline inline-flex items-center gap-1.5 text-xs"
                       >
                         <span>Open & Inspect Live Page</span>
                         <ArrowRight className="w-3 h-3" />
